@@ -146,7 +146,7 @@ class DatabaseHelper {
 
   // start tv series
 
-  Future<List<Map<String, dynamic>>> getWatchlistTvSeries() async {
+  Future<List<Map<String, dynamic>>> getAiringTodayTvSeries() async {
     final db = await database;
     final List<Map<String, dynamic>> results =
         await db!.query(_tblWatchlistTvSeries);
@@ -154,7 +154,7 @@ class DatabaseHelper {
     return results;
   }
 
-  Future<int> insertWatchlistTvSeries(TvSeriesTable tvSeriesTable) async {
+  Future<int> insertAiringTodayTvSeries(TvSeriesTable tvSeriesTable) async {
     final db = await database;
     return await db!.insert(_tblWatchlist, tvSeriesTable.toJson());
   }

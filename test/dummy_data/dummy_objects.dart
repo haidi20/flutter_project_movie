@@ -145,3 +145,12 @@ final tMovieResponse = MovieDetailResponse(
   voteAverage: 1,
   voteCount: 1,
 );
+
+// start tv series
+final testTvSeriesMap = {
+  'id': 1,
+  'overview': 'overview',
+  'posterPath': 'posterPath',
+  'name': 'name',
+};
+// end tv series
