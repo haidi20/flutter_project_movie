@@ -10,13 +10,13 @@ import 'package:mockito/annotations.dart';
 import 'package:http/http.dart' as http;
 
 @GenerateMocks([
+  DatabaseHelper,
   MovieRepository,
   MovieRemoteDataSource,
   MovieLocalDataSource,
   TvSeriesRepository,
   TvSeriesRemoteDataSource,
   TvSeriesLocalDataSource,
-  DatabaseHelper,
   NetworkInfo,
 ], customMocks: [
   MockSpec<http.Client>(as: #MockHttpClient)

@@ -154,6 +154,17 @@ class DatabaseHelper {
     return results;
   }
 
+  Future<List<Map<String, dynamic>>> getCacheTvSeries(String category) async {
+    final db = await database;
+    final List<Map<String, dynamic>> results = await db!.query(
+      _tblCacheTvSeries,
+      where: 'category = ?',
+      whereArgs: [category],
+    );
+
+    return results;
+  }
+
   Future<int> insertAiringTodayTvSeries(TvSeriesTable tvSeriesTable) async {
     final db = await database;
     return await db!.insert(_tblWatchlist, tvSeriesTable.toJson());
@@ -170,6 +181,15 @@ class DatabaseHelper {
         txn.insert(_tblCacheTvSeries, dataJson);
       }
     });
+  }
+
+  Future<int> clearCacheTvSeries(String category) async {
+    final db = await database;
+    return await db!.delete(
+      _tblCacheTvSeries,
+      where: 'category = ?',
+      whereArgs: [category],
+    );
   }
 
   // end tv series

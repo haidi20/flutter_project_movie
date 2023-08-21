@@ -32,7 +32,7 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
 
   @override
   Future<List<TvSeriesTable>> getCachedAiringTodayTvSeries() async {
-    final result = await databaseHelper.getCacheMovies('airing today');
+    final result = await databaseHelper.getCacheTvSeries('airing today');
     if (result.length > 0) {
       return result.map((data) => TvSeriesTable.fromMap(data)).toList();
     } else {
@@ -41,10 +41,11 @@ class TvSeriesLocalDataSourceImpl implements TvSeriesLocalDataSource {
   }
 
   @override
-  Future<void> cacheAiringTodayTvSeries(List<TvSeriesTable> TvSeries) async {
-    await databaseHelper.clearCache('airing today');
+  Future<void> cacheAiringTodayTvSeries(
+      List<TvSeriesTable> TvSeriesTable) async {
+    await databaseHelper.clearCacheTvSeries('airing today');
     await databaseHelper.insertCacheTransactionTvSeries(
-      TvSeries,
+      TvSeriesTable,
       'airing today',
     );
   }

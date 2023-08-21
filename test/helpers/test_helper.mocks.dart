@@ -588,6 +588,16 @@ class MockDatabaseHelper extends _i1.Mock implements _i20.DatabaseHelper {
             <Map<String, dynamic>>[]),
       ) as _i6.Future<List<Map<String, dynamic>>>);
   @override
+  _i6.Future<List<Map<String, dynamic>>> getCacheTvSeries(String? category) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getCacheTvSeries,
+          [category],
+        ),
+        returnValue: _i6.Future<List<Map<String, dynamic>>>.value(
+            <Map<String, dynamic>>[]),
+      ) as _i6.Future<List<Map<String, dynamic>>>);
+  @override
   _i6.Future<int> insertAiringTodayTvSeries(
           _i19.TvSeriesTable? tvSeriesTable) =>
       (super.noSuchMethod(
@@ -613,6 +623,14 @@ class MockDatabaseHelper extends _i1.Mock implements _i20.DatabaseHelper {
         returnValue: _i6.Future<void>.value(),
         returnValueForMissingStub: _i6.Future<void>.value(),
       ) as _i6.Future<void>);
+  @override
+  _i6.Future<int> clearCacheTvSeries(String? category) => (super.noSuchMethod(
+        Invocation.method(
+          #clearCacheTvSeries,
+          [category],
+        ),
+        returnValue: _i6.Future<int>.value(0),
+      ) as _i6.Future<int>);
 }
 
 /// A class which mocks [NetworkInfo].

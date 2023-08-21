@@ -153,4 +153,12 @@ final testTvSeriesMap = {
   'posterPath': 'posterPath',
   'name': 'name',
 };
+
+final testTvSeriesCacheMap = {
+  'id': 94722,
+  'overview':
+      "German daily news program, the oldest still existing program on German television.",
+  'posterPath': "/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg",
+  'name': 'Tagesschau',
+};
 // end tv series
