@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/tv_series_table.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
@@ -22,11 +23,18 @@ class DatabaseHelper {
   static const String _tblWatchlist = 'watchlist';
   static const String _tblCache = 'cache';
 
+  static const String _tblWatchlistTvSeries = 'watchlistTvSeries';
+  static const String _tblCacheTvSeries = 'cacheTvSeries';
+
   Future<Database> _initDb() async {
     final path = await getDatabasesPath();
     final databasePath = '$path/ditonton.db';
 
-    var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(
+      databasePath,
+      version: 1,
+      onCreate: _onCreate,
+    );
     return db;
   }
 
@@ -41,6 +49,24 @@ class DatabaseHelper {
     ''');
     await db.execute('''
       CREATE TABLE  $_tblCache (
+        id INTEGER PRIMARY KEY,
+        title TEXT,
+        overview TEXT,
+        posterPath TEXT,
+        category TEXT
+      );
+    ''');
+
+    await db.execute('''
+      CREATE TABLE  $_tblWatchlistTvSeries (
+        id INTEGER PRIMARY KEY,
+        title TEXT,
+        overview TEXT,
+        posterPath TEXT
+      );
+    ''');
+    await db.execute('''
+      CREATE TABLE  $_tblCacheTvSeries (
         id INTEGER PRIMARY KEY,
         title TEXT,
         overview TEXT,
@@ -117,4 +143,34 @@ class DatabaseHelper {
 
     return results;
   }
+
+  // start tv series
+
+  Future<List<Map<String, dynamic>>> getWatchlistTvSeries() async {
+    final db = await database;
+    final List<Map<String, dynamic>> results =
+        await db!.query(_tblWatchlistTvSeries);
+
+    return results;
+  }
+
+  Future<int> insertWatchlistTvSeries(TvSeriesTable tvSeriesTable) async {
+    final db = await database;
+    return await db!.insert(_tblWatchlist, tvSeriesTable.toJson());
+  }
+
+  Future<void> insertCacheTransactionTvSeries(
+      List<TvSeriesTable> TvSeries, String category) async {
+    final db = await database;
+
+    db!.transaction((txn) async {
+      for (final data in TvSeries) {
+        final dataJson = data.toJson();
+        dataJson['category'] = category;
+        txn.insert(_tblCacheTvSeries, dataJson);
+      }
+    });
+  }
+
+  // end tv series
 }

@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
 
-import 'package:dartz/dartz.dart';
 import 'package:ditonton/data/models/movie_detail_model.dart';
 import 'package:ditonton/data/models/movie_model.dart';
 import 'package:ditonton/data/models/movie_response.dart';
@@ -9,7 +8,6 @@ import 'package:ditonton/common/exception.dart';
 import 'package:http/http.dart' as http;
 
 abstract class MovieRemoteDataSource {
-  Future<int> getInteger();
   Future<List<MovieModel>> getNowPlayingMovies();
   Future<List<MovieModel>> getPopularMovies();
   Future<List<MovieModel>> getTopRatedMovies();
@@ -25,17 +23,6 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   final http.Client client;
 
   MovieRemoteDataSourceImpl({required this.client});
-
-  // latihan test
-  @override
-  Future<int> getInteger() async {
-    try {
-      await Future.delayed(const Duration(seconds: 2));
-      return 3;
-    } catch (error) {
-      throw ServerException();
-    }
-  }
 
   @override
   Future<List<MovieModel>> getNowPlayingMovies() async {
