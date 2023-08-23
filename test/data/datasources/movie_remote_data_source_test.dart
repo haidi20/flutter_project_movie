@@ -38,7 +38,7 @@ void main() {
       // act
       final result = await dataSource.getNowPlayingMovies();
       // assert
-      // expect(result, equals(tMovieList));
+      expect(result, equals(tMovieList));
     });
 
     test(
@@ -48,11 +48,11 @@ void main() {
       // not working
       when(mockHttpClient
               .get(Uri.parse('$BASE_URL/movie/now_playing?$API_KEY')))
-          .thenAnswer((_) async => http.Response('Not Found', 404));
+          .thenAnswer((_) async => http.Response('Not Found', 500));
       // act
       final call = dataSource.getNowPlayingMovies();
       // assert
-      // expect(() => call, throwsA(isA<ServerException>()));
+      expect(() => call, throwsA(isA<ServerException>()));
     });
   });
 

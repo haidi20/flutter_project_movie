@@ -13,6 +13,7 @@ cd %1
 if exist pubspec.yaml (
     echo running tests in %1
     flutter pub get
+    flutter pub run build_runner build REM
     flutter clean  REM <-- Added this line for cleaning
     if exist test\all_tests.dart (
         flutter test --coverage test\all_tests.dart

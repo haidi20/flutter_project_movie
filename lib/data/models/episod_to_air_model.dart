@@ -1,51 +1,52 @@
 import 'package:ditonton/domain/entities/episod_to_air.dart';
+import 'package:equatable/equatable.dart';
 
-class EpisodeToAirModel {
+class EpisodeToAirModel extends Equatable {
   EpisodeToAirModel({
-    required this.id,
-    required this.name,
-    required this.overview,
-    required this.voteAverage,
-    required this.voteCount,
-    required this.airDate,
-    required this.episodeNumber,
-    required this.episodeType,
-    required this.productionCode,
-    required this.runtime,
-    required this.seasonNumber,
-    required this.showId,
+    this.id,
+    this.name,
+    this.overview,
+    this.voteAverage,
+    this.voteCount,
+    this.airDate,
+    this.episodeNumber,
+    this.episodeType,
+    this.productionCode,
+    this.runtime,
+    this.seasonNumber,
+    this.showId,
     this.stillPath,
   });
 
-  final int id;
-  final String name;
-  final String overview;
-  final double voteAverage;
-  final int voteCount;
-  final String airDate;
-  final int episodeNumber;
-  final String episodeType;
-  final String productionCode;
-  final int runtime;
-  final int seasonNumber;
-  final int showId;
+  final int? id;
+  final String? name;
+  final String? overview;
+  final double? voteAverage;
+  final int? voteCount;
+  final String? airDate;
+  final int? episodeNumber;
+  final String? episodeType;
+  final String? productionCode;
+  final int? runtime;
+  final int? seasonNumber;
+  final int? showId;
   final String? stillPath;
 
   factory EpisodeToAirModel.fromJson(Map<String, dynamic> json) {
     return EpisodeToAirModel(
-      id: json['id'],
-      name: json['name'],
-      overview: json['overview'],
-      voteAverage: json['vote_average'].toDouble(),
-      voteCount: json['vote_count'],
-      airDate: json['air_date'],
-      episodeNumber: json['episode_number'],
-      episodeType: json['episode_type'],
-      productionCode: json['production_code'],
-      runtime: json['runtime'],
-      seasonNumber: json['season_number'],
-      showId: json['show_id'],
-      stillPath: json['still_path'],
+      id: json['id'] as int?,
+      name: json['name'] as String?,
+      overview: json['overview'] as String?,
+      voteAverage: (json['vote_average'] as num?)?.toDouble(),
+      voteCount: json['vote_count'] as int?,
+      airDate: json['air_date'] as String?,
+      episodeNumber: json['episode_number'] as int?,
+      episodeType: json['episode_type'] as String?,
+      productionCode: json['production_code'] as String?,
+      runtime: json['runtime'] as int?,
+      seasonNumber: json['season_number'] as int?,
+      showId: json['show_id'] as int?,
+      stillPath: json['still_path'] as String?,
     );
   }
 

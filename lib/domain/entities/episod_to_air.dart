@@ -1,32 +1,32 @@
 class EpisodeToAir {
   EpisodeToAir({
-    required this.id,
-    required this.name,
-    required this.overview,
-    required this.voteAverage,
-    required this.voteCount,
-    required this.airDate,
-    required this.episodeNumber,
-    required this.episodeType,
-    required this.productionCode,
-    required this.runtime,
-    required this.seasonNumber,
-    required this.showId,
+    this.id,
+    this.name,
+    this.overview,
+    this.voteAverage,
+    this.voteCount,
+    this.airDate,
+    this.episodeNumber,
+    this.episodeType,
+    this.productionCode,
+    this.runtime,
+    this.seasonNumber,
+    this.showId,
     this.stillPath,
   });
 
-  final int id;
-  final String name;
-  final String overview;
-  final double voteAverage;
-  final int voteCount;
-  final String airDate;
-  final int episodeNumber;
-  final String episodeType;
-  final String productionCode;
-  final int runtime;
-  final int seasonNumber;
-  final int showId;
+  final int? id;
+  final String? name;
+  final String? overview;
+  final double? voteAverage;
+  final int? voteCount;
+  final String? airDate;
+  final int? episodeNumber;
+  final String? episodeType;
+  final String? productionCode;
+  final int? runtime;
+  final int? seasonNumber;
+  final int? showId;
   final String? stillPath;
 
   List<Object?> get props => [

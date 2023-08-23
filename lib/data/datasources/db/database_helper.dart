@@ -146,7 +146,7 @@ class DatabaseHelper {
 
   // start tv series
 
-  Future<List<Map<String, dynamic>>> getAiringTodayTvSeries() async {
+  Future<List<Map<String, dynamic>>> getWatchListTvSeries() async {
     final db = await database;
     final List<Map<String, dynamic>> results =
         await db!.query(_tblWatchlistTvSeries);
@@ -165,17 +165,41 @@ class DatabaseHelper {
     return results;
   }
 
-  Future<int> insertAiringTodayTvSeries(TvSeriesTable tvSeriesTable) async {
+  Future<int> clearCacheTvSeries(String category) async {
     final db = await database;
-    return await db!.insert(_tblWatchlist, tvSeriesTable.toJson());
+    return await db!.delete(
+      _tblCacheTvSeries,
+      where: 'category = ?',
+      whereArgs: [category],
+    );
+  }
+
+  Future<Map<String, dynamic>?> getTvSeriesById(int id) async {
+    final db = await database;
+    final results = await db!.query(
+      _tblWatchlistTvSeries,
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+
+    if (results.isNotEmpty) {
+      return results.first;
+    } else {
+      return null;
+    }
+  }
+
+  Future<int> insertWatchListTvSeries(TvSeriesTable tvSeriesTable) async {
+    final db = await database;
+    return await db!.insert(_tblWatchlistTvSeries, tvSeriesTable.toJson());
   }
 
   Future<void> insertCacheTransactionTvSeries(
-      List<TvSeriesTable> TvSeries, String category) async {
+      List<TvSeriesTable> tvSeriesTable, String category) async {
     final db = await database;
 
     db!.transaction((txn) async {
-      for (final data in TvSeries) {
+      for (final data in tvSeriesTable) {
         final dataJson = data.toJson();
         dataJson['category'] = category;
         txn.insert(_tblCacheTvSeries, dataJson);
@@ -183,12 +207,12 @@ class DatabaseHelper {
     });
   }
 
-  Future<int> clearCacheTvSeries(String category) async {
+  Future<int> removeWatchListTvSeries(TvSeriesTable tvSeriesTable) async {
     final db = await database;
     return await db!.delete(
-      _tblCacheTvSeries,
-      where: 'category = ?',
-      whereArgs: [category],
+      _tblWatchlistTvSeries,
+      where: 'id = ?',
+      whereArgs: [tvSeriesTable.id],
     );
   }
 

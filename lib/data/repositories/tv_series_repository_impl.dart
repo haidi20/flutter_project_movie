@@ -23,8 +23,8 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   Future<Either<Failure, List<TvSeries>>> getAiringTodayTvSeries() async {
     if (await networkInfo.isConnected) {
       try {
-        final result = await remoteDataSource.getAiringTodayTvSeries();
-        localDataSource.cacheAiringTodayTvSeries(
+        final result = await remoteDataSource.getAiringToday();
+        localDataSource.cacheAiringToday(
             result.map((tvSeries) => TvSeriesTable.fromDTO(tvSeries)).toList());
         return Right(result.map((model) => model.toEntity()).toList());
       } on ServerException {
@@ -32,7 +32,7 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
       }
     } else {
       try {
-        final result = await localDataSource.getCachedAiringTodayTvSeries();
+        final result = await localDataSource.getCachedAiringToday();
         return Right(result.map((model) => model.toEntity()).toList());
       } on CacheException catch (e) {
         return Left(CacheFailure(e.message));

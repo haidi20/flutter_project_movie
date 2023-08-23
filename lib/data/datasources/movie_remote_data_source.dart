@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:convert';
 
 import 'package:ditonton/data/models/movie_detail_model.dart';
@@ -27,7 +26,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   @override
   Future<List<MovieModel>> getNowPlayingMovies() async {
     final response =
-        await http.get(Uri.parse('$BASE_URL/movie/now_playing?$API_KEY'));
+        await client.get(Uri.parse('$BASE_URL/movie/now_playing?$API_KEY'));
 
     if (response.statusCode == 200) {
       List<MovieModel> getData =
@@ -99,13 +98,5 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     } else {
       throw ServerException();
     }
-  }
-
-  String readJson(String name) {
-    var dir = Directory.current.path;
-    if (dir.endsWith('/test')) {
-      dir = dir.replaceAll('/test', '');
-    }
-    return File('$dir/test/$name').readAsStringSync();
   }
 }

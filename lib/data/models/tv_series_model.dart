@@ -21,15 +21,15 @@ class TvSeriesModel {
   final String? firstAirDate;
   final List<int> genreIds;
   final int id;
-  final String name;
-  final List<String> originCountry;
-  final String originalLanguage;
-  final String originalName;
+  final String? name;
+  final List<String>? originCountry;
+  final String? originalLanguage;
+  final String? originalName;
   final String overview;
-  final double popularity;
+  final double? popularity;
   final String? posterPath;
-  final double voteAverage;
-  final int voteCount;
+  final double? voteAverage;
+  final int? voteCount;
 
   factory TvSeriesModel.fromJson(Map<String, dynamic> json) {
     return TvSeriesModel(
@@ -38,7 +38,8 @@ class TvSeriesModel {
       genreIds: List<int>.from(json['genre_ids'].map((x) => x)),
       id: json['id'],
       name: json['name'],
-      originCountry: List<String>.from(json['origin_country'].map((x) => x)),
+      originCountry:
+          List<String>.from(json['origin_country']?.map((x) => x) ?? []),
       originalLanguage: json['original_language'],
       originalName: json['original_name'],
       overview: json['overview'],
@@ -56,7 +57,7 @@ class TvSeriesModel {
       'genre_ids': List<dynamic>.from(genreIds.map((x) => x)),
       'id': id,
       'name': name,
-      'origin_country': List<dynamic>.from(originCountry.map((x) => x)),
+      'origin_country': List<dynamic>.from(originCountry?.map((x) => x) ?? []),
       'original_language': originalLanguage,
       'original_name': originalName,
       'overview': overview,
