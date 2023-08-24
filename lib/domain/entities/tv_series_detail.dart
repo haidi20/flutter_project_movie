@@ -6,7 +6,6 @@ import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/spoken_language.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ditonton/domain/entities/genre.dart';
-import 'package:ditonton/domain/entities/episod_to_air.dart';
 
 class TvSeriesDetail extends Equatable {
   TvSeriesDetail({

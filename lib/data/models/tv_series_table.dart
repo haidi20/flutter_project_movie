@@ -1,9 +1,10 @@
 import 'package:ditonton/data/models/tv_series_model.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
+import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesTable extends Equatable {
-  final int id;
+  final int? id;
   final String? name;
   final String? posterPath;
   final String? overview;
@@ -16,7 +17,7 @@ class TvSeriesTable extends Equatable {
   });
 
   // Convert TvSeries entity to TvSeriesTable
-  factory TvSeriesTable.fromEntity(TvSeries entity) {
+  factory TvSeriesTable.fromEntity(TvSeriesDetail entity) {
     return TvSeriesTable(
       id: entity.id,
       name: entity.name,
@@ -46,7 +47,7 @@ class TvSeriesTable extends Equatable {
   }
 
   // Convert TvSeriesTable to TvSeries
-  TvSeries toEntity() => TvSeries.watchlistTvSeries(
+  TvSeries toEntity() => TvSeries.watchlist(
         id: id,
         overview: overview,
         posterPath: posterPath,

@@ -1,6 +1,7 @@
 import 'package:ditonton/domain/entities/tv_series.dart';
+import 'package:equatable/equatable.dart';
 
-class TvSeriesModel {
+class TvSeriesModel extends Equatable {
   TvSeriesModel({
     required this.backdropPath,
     required this.firstAirDate,

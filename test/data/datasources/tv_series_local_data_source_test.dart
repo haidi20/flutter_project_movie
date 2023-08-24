@@ -23,7 +23,7 @@ void main() {
       when(mockDatabaseHelper.getWatchListTvSeries())
           .thenAnswer((_) async => [testTvSeriesMap]);
       // act
-      final result = await dataSource.getAiringToday();
+      final result = await dataSource.getWatchList();
       // assert
       TvSeriesTable testTvSeriesModel = TvSeriesTable.fromMap(testTvSeriesMap);
       expect(result, [testTvSeriesModel]);

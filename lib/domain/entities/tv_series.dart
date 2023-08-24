@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 class TvSeries extends Equatable {
   TvSeries({
@@ -17,7 +18,7 @@ class TvSeries extends Equatable {
     required this.voteCount,
   });
 
-  TvSeries.watchlistTvSeries({
+  TvSeries.watchlist({
     required this.id,
     required this.overview,
     required this.posterPath,
@@ -27,7 +28,7 @@ class TvSeries extends Equatable {
   String? backdropPath;
   String? firstAirDate;
   List<int>? genreIds;
-  int id;
+  int? id;
   String? name;
   List<String>? originCountry;
   String? originalLanguage;
