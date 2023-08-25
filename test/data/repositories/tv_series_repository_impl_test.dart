@@ -211,6 +211,52 @@ void main() {
     });
   });
 
+  group('Get Tv Series Recommendations', () {
+    final tTvSeriesList = <TvSeriesModel>[];
+    final tId = 1;
+
+    test('should return data Tv Series list when the call is successful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTvSeriesRecommendation(id: tId))
+          .thenAnswer((_) async => tTvSeriesList);
+      // act
+      final result = await repository.getTvSeriesRecommendation(id: tId);
+      // assert
+      verify(mockRemoteDataSource.getTvSeriesRecommendation(id: tId));
+      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
+      final resultList = result.getOrElse(() => []);
+      expect(resultList, equals(tTvSeriesList));
+    });
+
+    test(
+        'should return server failure when call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTvSeriesRecommendation(id: tId))
+          .thenThrow(ServerException());
+      // act
+      final result = await repository.getTvSeriesRecommendation(id: tId);
+      // assertbuild runner
+      verify(mockRemoteDataSource.getTvSeriesRecommendation(id: tId));
+      expect(result, equals(Left(ServerFailure(''))));
+    });
+
+    test(
+        'should return connection failure when the device is not connected to the internet',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTvSeriesRecommendation(id: tId))
+          .thenThrow(SocketException('Failed to connect to the network'));
+      // act
+      final result = await repository.getTvSeriesRecommendation(id: tId);
+      // assert
+      verify(mockRemoteDataSource.getTvSeriesRecommendation(id: tId));
+      expect(result,
+          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+    });
+  });
+
   group('Get tv series Detail', () {
     final tId = 1;
     final testTvSeriesDetailResponse = TvSeriesDetailModel(
@@ -319,7 +365,7 @@ void main() {
     );
 
     test(
-        'should return Movie data when the call to remote data source is successful',
+        'should return tv series data when the call to remote data source is successful',
         () async {
       // arrange
       when(mockRemoteDataSource.getTvSeriesDetail(id: tId))
@@ -457,8 +503,8 @@ void main() {
     });
   });
 
-  group('get watchlist movies', () {
-    test('should return list of Movies', () async {
+  group('get watchlist tv series', () {
+    test('should return list of tv series', () async {
       // arrange
       when(mockLocalDataSource.getWatchList())
           .thenAnswer((_) async => [testTvSeriesTable]);

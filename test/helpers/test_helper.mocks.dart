@@ -643,6 +643,25 @@ class MockTvSeriesRepository extends _i1.Mock
         )),
       ) as _i7.Future<_i2.Either<_i12.Failure, List<_i19.TvSeries>>>);
   @override
+  _i7.Future<_i2.Either<_i12.Failure, List<_i19.TvSeries>>>
+      getTvSeriesRecommendation({required int? id}) => (super.noSuchMethod(
+            Invocation.method(
+              #getTvSeriesRecommendation,
+              [],
+              {#id: id},
+            ),
+            returnValue:
+                _i7.Future<_i2.Either<_i12.Failure, List<_i19.TvSeries>>>.value(
+                    _FakeEither_0<_i12.Failure, List<_i19.TvSeries>>(
+              this,
+              Invocation.method(
+                #getTvSeriesRecommendation,
+                [],
+                {#id: id},
+              ),
+            )),
+          ) as _i7.Future<_i2.Either<_i12.Failure, List<_i19.TvSeries>>>);
+  @override
   _i7.Future<_i2.Either<_i12.Failure, _i20.TvSeriesDetail>> getTvSeriesDetail(
           {required int? id}) =>
       (super.noSuchMethod(
@@ -756,6 +775,18 @@ class MockTvSeriesRemoteDataSource extends _i1.Mock
         Invocation.method(
           #getTopRated,
           [],
+        ),
+        returnValue:
+            _i7.Future<List<_i22.TvSeriesModel>>.value(<_i22.TvSeriesModel>[]),
+      ) as _i7.Future<List<_i22.TvSeriesModel>>);
+  @override
+  _i7.Future<List<_i22.TvSeriesModel>> getTvSeriesRecommendation(
+          {required int? id}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTvSeriesRecommendation,
+          [],
+          {#id: id},
         ),
         returnValue:
             _i7.Future<List<_i22.TvSeriesModel>>.value(<_i22.TvSeriesModel>[]),
