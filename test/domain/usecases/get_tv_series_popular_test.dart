@@ -17,7 +17,7 @@ void main() {
 
   final tTvSeries = <TvSeries>[];
 
-  group('GetTvSeriesPopular Tests', () {
+  group('TvSeriesPopular Tests', () {
     group('execute', () {
       test(
           'should get list of tv series from the repository when execute function is called',
