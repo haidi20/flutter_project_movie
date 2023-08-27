@@ -2,14 +2,14 @@ import 'package:ditonton/domain/entities/season.dart';
 import 'package:equatable/equatable.dart';
 
 class SeasonModel extends Equatable {
-  final String airDate;
-  final int episodeCount;
-  final int id;
-  final String name;
-  final String overview;
+  final String? airDate;
+  final int? episodeCount;
+  final int? id;
+  final String? name;
+  final String? overview;
   final String? posterPath;
-  final int seasonNumber;
-  final double voteAverage;
+  final int? seasonNumber;
+  final double? voteAverage;
 
   SeasonModel({
     required this.airDate,
@@ -65,14 +65,14 @@ class SeasonModel extends Equatable {
   // Convert an instance of SeasonModel to an instance of Season entity
   Season toEntity() {
     return Season(
-      airDate: airDate,
-      episodeCount: episodeCount,
-      id: id,
-      name: name,
-      overview: overview,
-      posterPath: posterPath,
-      seasonNumber: seasonNumber,
-      voteAverage: voteAverage,
+      airDate: airDate ?? "",
+      episodeCount: episodeCount ?? 0,
+      id: id ?? 0,
+      name: name ?? "",
+      overview: overview ?? "",
+      posterPath: posterPath ?? "",
+      seasonNumber: seasonNumber ?? 0,
+      voteAverage: voteAverage ?? 0,
     );
   }
 }

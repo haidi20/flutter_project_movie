@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 
 class TvSeriesWatchListNotifier extends ChangeNotifier {
   var _watchlistTvSeries = <TvSeries>[];
-  List<TvSeries> get watchlistMovies => _watchlistTvSeries;
+  List<TvSeries> get watchlistTvSeries => _watchlistTvSeries;
 
   var _watchlistState = RequestState.Empty;
   RequestState get watchlistState => _watchlistState;
@@ -28,9 +28,9 @@ class TvSeriesWatchListNotifier extends ChangeNotifier {
         _message = failure.message;
         notifyListeners();
       },
-      (moviesData) {
+      (tvSeriesData) {
         _watchlistState = RequestState.Loaded;
-        _watchlistTvSeries = moviesData;
+        _watchlistTvSeries = tvSeriesData;
         notifyListeners();
       },
     );

@@ -83,7 +83,7 @@ void main() {
       // arrange
       _arrangeUsecase();
       // act
-      await provider.fetchDetailTvSeries(id: tId);
+      await provider.fetchTvSeriesDetail(id: tId);
       // assert
       verify(mockGetTvSeriesDetail.execute(tId));
       verify(mockGetTvSeriesRecommendation.execute(tId));
@@ -93,7 +93,7 @@ void main() {
       // arrange
       _arrangeUsecase();
       // act
-      provider.fetchDetailTvSeries(id: tId);
+      provider.fetchTvSeriesDetail(id: tId);
       // assert
       expect(provider.tvSeriesDetailState, RequestState.Loading);
       expect(listenerCallCount, 1);
@@ -103,7 +103,7 @@ void main() {
       // arrange
       _arrangeUsecase();
       // act
-      await provider.fetchDetailTvSeries(id: tId);
+      await provider.fetchTvSeriesDetail(id: tId);
       // assert
       expect(provider.tvSeriesDetailState, RequestState.Loaded);
       expect(provider.tvSeriesDetail, testTvSeriesDetail);
@@ -116,7 +116,7 @@ void main() {
       // arrange
       _arrangeUsecase();
       // act
-      await provider.fetchDetailTvSeries(id: tId);
+      await provider.fetchTvSeriesDetail(id: tId);
       // assert
       expect(provider.tvSeriesDetailState, RequestState.Loaded);
       expect(provider.tvSeriesRecommendations, tTvSeriesList);
@@ -128,7 +128,7 @@ void main() {
       // arrange
       _arrangeUsecase();
       // act
-      await provider.fetchDetailTvSeries(id: tId);
+      await provider.fetchTvSeriesDetail(id: tId);
       // assert
       verify(mockGetTvSeriesRecommendation.execute(tId));
       expect(provider.tvSeriesRecommendations, tTvSeriesList);
@@ -139,7 +139,7 @@ void main() {
       // arrange
       _arrangeUsecase();
       // act
-      await provider.fetchDetailTvSeries(id: tId);
+      await provider.fetchTvSeriesDetail(id: tId);
       // assert
       expect(provider.getTvSeriesRecommendationState, RequestState.Loaded);
       expect(provider.tvSeriesRecommendations, tTvSeriesList);
@@ -152,7 +152,7 @@ void main() {
       when(mockGetTvSeriesRecommendation.execute(tId))
           .thenAnswer((_) async => Left(ServerFailure('Failed')));
       // act
-      await provider.fetchDetailTvSeries(id: tId);
+      await provider.fetchTvSeriesDetail(id: tId);
       // assert
       expect(provider.getTvSeriesRecommendationState, RequestState.Error);
       expect(provider.message, 'Failed');
@@ -231,7 +231,7 @@ void main() {
       when(mockGetTvSeriesRecommendation.execute(tId))
           .thenAnswer((_) async => Right(tTvSeriesList));
       // act
-      await provider.fetchDetailTvSeries(id: tId);
+      await provider.fetchTvSeriesDetail(id: tId);
       // assert
       expect(provider.tvSeriesDetailState, RequestState.Error);
       expect(provider.message, 'Server Failure');

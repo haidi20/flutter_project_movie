@@ -1,17 +1,17 @@
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
+import 'package:ditonton/domain/usecases/get_tv_series_airing_today.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_popular.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_top_rated.dart';
-import 'package:ditonton/domain/usecases/get_tv_series_watchlist.dart';
 import 'package:flutter/foundation.dart';
 
 class TvSeriesListNotifier extends ChangeNotifier {
-  final GetTvSeriesWatchList getTvSeriesWatchList;
+  final GetTvSeriesAiringToday getTvSeriesAiringToday;
   final GetTvSeriesPopular getTvSeriesPopular;
   final GetTvSeriesTopRated getTvSeriesTopRated;
 
   TvSeriesListNotifier({
-    required this.getTvSeriesWatchList,
+    required this.getTvSeriesAiringToday,
     required this.getTvSeriesPopular,
     required this.getTvSeriesTopRated,
   });
@@ -38,7 +38,7 @@ class TvSeriesListNotifier extends ChangeNotifier {
     _airingTodayState = RequestState.Loading;
     notifyListeners();
 
-    final result = await getTvSeriesWatchList.execute();
+    final result = await getTvSeriesAiringToday.execute();
     result.fold(
       (failure) {
         _message = failure.message;

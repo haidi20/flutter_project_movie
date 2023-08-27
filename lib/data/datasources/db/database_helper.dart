@@ -23,8 +23,8 @@ class DatabaseHelper {
   static const String _tblWatchlist = 'watchlist';
   static const String _tblCache = 'cache';
 
-  static const String _tblWatchlistTvSeries = 'watchlistTvSeries';
-  static const String _tblCacheTvSeries = 'cacheTvSeries';
+  static const String _tblWatchlistTvSeries = 'watch_list_tv_series';
+  static const String _tblCacheTvSeries = 'cache_tv_seris';
 
   Future<Database> _initDb() async {
     final path = await getDatabasesPath();
@@ -60,7 +60,7 @@ class DatabaseHelper {
     await db.execute('''
       CREATE TABLE  $_tblWatchlistTvSeries (
         id INTEGER PRIMARY KEY,
-        title TEXT,
+        name TEXT,
         overview TEXT,
         posterPath TEXT
       );
@@ -68,7 +68,7 @@ class DatabaseHelper {
     await db.execute('''
       CREATE TABLE  $_tblCacheTvSeries (
         id INTEGER PRIMARY KEY,
-        title TEXT,
+        name TEXT,
         overview TEXT,
         posterPath TEXT,
         category TEXT

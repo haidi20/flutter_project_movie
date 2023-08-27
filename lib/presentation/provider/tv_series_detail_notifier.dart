@@ -43,7 +43,7 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
   bool _isAddedtoWatchlist = false;
   bool get isAddedToWatchlist => _isAddedtoWatchlist;
 
-  Future<void> fetchDetailTvSeries({required int id}) async {
+  Future<void> fetchTvSeriesDetail({required int id}) async {
     _tvSeriesDetailState = RequestState.Loading;
     notifyListeners();
 
