@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/domain/entities/episode.dart';
 import 'package:ditonton/domain/entities/genre.dart';
+import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/presentation/provider/tv_series_detail_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_series_season_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
@@ -44,9 +47,11 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
             final tvSeriesDetail = provider.tvSeriesDetail;
             return SafeArea(
               child: DetailContent(
-                tvSeriesDetail,
-                provider.tvSeriesRecommendations,
-                provider.isAddedToWatchlist,
+                tvSeriesid: widget.id,
+                tvSeriesDetail: tvSeriesDetail,
+                recommendations: provider.tvSeriesRecommendations,
+                isAddedWatchlist: provider.isAddedToWatchlist,
+                seasons: provider.tvSeriesSeasons,
               ),
             );
           } else {
@@ -59,15 +64,19 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
 }
 
 class DetailContent extends StatelessWidget {
+  final int tvSeriesid;
   final TvSeriesDetail tvSeriesDetail;
   final List<TvSeries> recommendations;
+  final List<Season> seasons;
   final bool isAddedWatchlist;
 
-  DetailContent(
-    this.tvSeriesDetail,
-    this.recommendations,
-    this.isAddedWatchlist,
-  );
+  DetailContent({
+    required this.tvSeriesid,
+    required this.tvSeriesDetail,
+    required this.recommendations,
+    required this.seasons,
+    required this.isAddedWatchlist,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -187,69 +196,15 @@ class DetailContent extends StatelessWidget {
                             ),
                             SizedBox(height: 16),
                             Text(
+                              'Seasons',
+                              style: kHeading6,
+                            ),
+                            _listSeason(tvSeriesId: tvSeriesid),
+                            Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
-                            Consumer<TvSeriesDetailNotifier>(
-                              builder: (context, data, child) {
-                                if (data.getTvSeriesRecommendationState ==
-                                    RequestState.Loading) {
-                                  return Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else if (data
-                                        .getTvSeriesRecommendationState ==
-                                    RequestState.Error) {
-                                  return Text(data.message);
-                                } else if (data
-                                        .getTvSeriesRecommendationState ==
-                                    RequestState.Loaded) {
-                                  return Container(
-                                    height: 150,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        final tvSeriesRecommendation =
-                                            recommendations[index];
-                                        return Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.pushReplacementNamed(
-                                                context,
-                                                TvSeriesDetailPage.ROUTE_NAME,
-                                                arguments:
-                                                    tvSeriesRecommendation.id,
-                                              );
-                                            },
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(8),
-                                              ),
-                                              child: CachedNetworkImage(
-                                                imageUrl:
-                                                    'https://image.tmdb.org/t/p/w500${tvSeriesRecommendation.posterPath}',
-                                                placeholder: (context, url) =>
-                                                    Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        Icon(Icons.error),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      itemCount: recommendations.length,
-                                    ),
-                                  );
-                                } else {
-                                  return Container();
-                                }
-                              },
-                            ),
+                            _listRecommendation(),
                           ],
                         ),
                       ),
@@ -285,6 +240,203 @@ class DetailContent extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+
+  Widget _listSeason({required int tvSeriesId}) {
+    return Consumer<TvSeriesDetailNotifier>(
+      builder: (context, data, child) {
+        if (data.tvSeriesDetailState == RequestState.Loading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (data.tvSeriesDetailState == RequestState.Error) {
+          return Text(data.message);
+        } else if (data.tvSeriesDetailState == RequestState.Loaded) {
+          return Container(
+            height: 150,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                final tvSeriesSeason = seasons[index];
+                return Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: InkWell(
+                    onTap: () {
+                      final getTvSeriesSeason = seasons[index];
+                      debugPrint(index.toString());
+                      Provider.of<TvSeriesSeasonNotifier>(
+                        context,
+                        listen: false,
+                      ).fetchSeasonDetailTvSeries(
+                        id: tvSeriesId,
+                        seasonNumber: getTvSeriesSeason.seasonNumber,
+                      );
+
+                      _showDialogSearch(context: context);
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://image.tmdb.org/t/p/w500${tvSeriesSeason.posterPath}',
+                        placeholder: (context, url) => Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              itemCount: seasons.length,
+            ),
+          );
+        } else {
+          return Container();
+        }
+      },
+    );
+  }
+
+  Widget _listRecommendation() {
+    return Consumer<TvSeriesDetailNotifier>(
+      builder: (context, data, child) {
+        if (data.getTvSeriesRecommendationState == RequestState.Loading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (data.getTvSeriesRecommendationState == RequestState.Error) {
+          return Text(data.message);
+        } else if (data.getTvSeriesRecommendationState == RequestState.Loaded) {
+          return Container(
+            height: 150,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                final tvSeriesRecommendation = recommendations[index];
+                return Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        TvSeriesDetailPage.ROUTE_NAME,
+                        arguments: tvSeriesRecommendation.id,
+                      );
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            'https://image.tmdb.org/t/p/w500${tvSeriesRecommendation.posterPath}',
+                        placeholder: (context, url) => Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              itemCount: recommendations.length,
+            ),
+          );
+        } else {
+          return Container();
+        }
+      },
+    );
+  }
+
+  Future _showDialogSearch({
+    required BuildContext context,
+  }) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Episodes'),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: _tvSeriesSeasonCard(),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('Tutup'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _tvSeriesSeasonCard() {
+    return Consumer<TvSeriesSeasonNotifier>(
+      builder: (context, data, child) {
+        if (data.state == RequestState.Loading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (data.state == RequestState.Loaded) {
+          return ListView.builder(
+            itemBuilder: (context, index) {
+              Episode episode = data.tvSeriesSeason.episodes[index];
+              return Container(
+                margin: const EdgeInsets.symmetric(vertical: 4),
+                child: InkWell(
+                  onTap: () {
+                    //
+                  },
+                  child: Stack(
+                    alignment: Alignment.bottomLeft,
+                    children: [
+                      Card(
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                            // left: 16 + 80 + 16,
+                            left: 16,
+                            bottom: 8,
+                            right: 8,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                episode.name ?? '-',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: kHeading6,
+                              ),
+                              Text(
+                                "Episode : ${episode.episodeNumber.toString()}",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: kHeading6,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+            itemCount: data.tvSeriesSeason.episodes.length,
+          );
+        } else {
+          return Center(
+            key: Key('error_message'),
+            child: Text(data.message),
+          );
+        }
+      },
     );
   }
 

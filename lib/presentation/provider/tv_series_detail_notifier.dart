@@ -1,8 +1,10 @@
 import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart';
+import 'package:ditonton/domain/usecases/get_tv_series_seasons.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_watchist_status.dart';
 import 'package:ditonton/domain/usecases/remove_tv_series_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_tv_series_watchlist.dart';
@@ -11,6 +13,7 @@ import 'package:flutter/foundation.dart';
 class TvSeriesDetailNotifier extends ChangeNotifier {
   final GetTvSeriesDetail getTvSeriesDetail;
   final GetTvSeriesRecommendation getTvSeriesRecommendation;
+  final GetTvSeriesSeason getTvSeriesSeason;
   final GetTvSeriesWatchListStatus getTvSeriesWatchListStatus;
   final TvSeriesSaveWatchList tvSeriesSaveWatchList;
   final TvSeriesRemoveWatchlist tvSeriesRemoveWatchlist;
@@ -18,6 +21,7 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
   TvSeriesDetailNotifier({
     required this.getTvSeriesDetail,
     required this.getTvSeriesRecommendation,
+    required this.getTvSeriesSeason,
     required this.getTvSeriesWatchListStatus,
     required this.tvSeriesSaveWatchList,
     required this.tvSeriesRemoveWatchlist,
@@ -37,6 +41,11 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
   List<TvSeries> _tvSeriesRecommendations = [];
   List<TvSeries> get tvSeriesRecommendations => _tvSeriesRecommendations;
 
+  RequestState _tvSeriesSeasonsState = RequestState.Empty;
+  RequestState get getTvSeriesSeasonsState => _tvSeriesSeasonsState;
+  List<Season> _tvSeriesSeasons = [];
+  List<Season> get tvSeriesSeasons => _tvSeriesSeasons;
+
   String _message = '';
   String get message => _message;
 
@@ -49,6 +58,8 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
 
     final detailResult = await getTvSeriesDetail.execute(id);
     final recommendationResult = await getTvSeriesRecommendation.execute(id);
+    // final recommendationResult = await getTvSeriesSeason.execute(id, );
+
     detailResult.fold(
       (failure) {
         _tvSeriesDetailState = RequestState.Error;
@@ -59,6 +70,11 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
         _tvSeriesDetail = tvSeries;
         _tvSeriesDetailState = RequestState.Loaded;
         notifyListeners();
+
+        // season list season
+        _tvSeriesSeasons = tvSeries.seasons ?? [];
+
+        // end list season
 
         recommendationResult.fold(
           (failure) {

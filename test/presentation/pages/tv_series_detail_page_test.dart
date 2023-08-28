@@ -1,4 +1,5 @@
 import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/presentation/pages/tv_series_detail_page.dart';
 import 'package:ditonton/presentation/provider/tv_series_detail_notifier.dart';
@@ -35,7 +36,9 @@ void main() {
     when(mockNotifier.tvSeriesDetail).thenReturn(testTvSeriesDetail);
     when(mockNotifier.getTvSeriesRecommendationState)
         .thenReturn(RequestState.Loaded);
+    when(mockNotifier.getTvSeriesSeasonsState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvSeriesRecommendations).thenReturn(<TvSeries>[]);
+    when(mockNotifier.tvSeriesSeasons).thenReturn(<Season>[]);
     when(mockNotifier.isAddedToWatchlist).thenReturn(false);
 
     final watchlistButtonIcon = find.byIcon(Icons.add);
@@ -52,7 +55,9 @@ void main() {
     when(mockNotifier.tvSeriesDetail).thenReturn(testTvSeriesDetail);
     when(mockNotifier.getTvSeriesRecommendationState)
         .thenReturn(RequestState.Loaded);
+    when(mockNotifier.getTvSeriesSeasonsState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvSeriesRecommendations).thenReturn(<TvSeries>[]);
+    when(mockNotifier.tvSeriesSeasons).thenReturn(<Season>[]);
     when(mockNotifier.isAddedToWatchlist).thenReturn(true);
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
@@ -69,7 +74,9 @@ void main() {
     when(mockNotifier.tvSeriesDetail).thenReturn(testTvSeriesDetail);
     when(mockNotifier.getTvSeriesRecommendationState)
         .thenReturn(RequestState.Loaded);
+    when(mockNotifier.getTvSeriesSeasonsState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvSeriesRecommendations).thenReturn(<TvSeries>[]);
+    when(mockNotifier.tvSeriesSeasons).thenReturn(<Season>[]);
     when(mockNotifier.isAddedToWatchlist).thenReturn(false);
     when(mockNotifier.watchlistMessage).thenReturn('Added to Watchlist');
 
@@ -93,7 +100,9 @@ void main() {
     when(mockNotifier.tvSeriesDetail).thenReturn(testTvSeriesDetail);
     when(mockNotifier.getTvSeriesRecommendationState)
         .thenReturn(RequestState.Loaded);
+    when(mockNotifier.getTvSeriesSeasonsState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tvSeriesRecommendations).thenReturn(<TvSeries>[]);
+    when(mockNotifier.tvSeriesSeasons).thenReturn(<Season>[]);
     when(mockNotifier.isAddedToWatchlist).thenReturn(false);
     when(mockNotifier.watchlistMessage).thenReturn('Failed');
 

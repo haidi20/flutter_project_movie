@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/common/state_enum.dart';
+import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart';
+import 'package:ditonton/domain/usecases/get_tv_series_seasons.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_watchist_status.dart';
 import 'package:ditonton/domain/usecases/remove_tv_series_watchlist.dart';
 import 'package:ditonton/domain/usecases/save_tv_series_watchlist.dart';
@@ -19,6 +21,7 @@ import 'tv_series_detail_notifier_test.mocks.dart';
   GetTvSeriesDetail,
   GetTvSeriesRecommendation,
   GetTvSeriesWatchListStatus,
+  GetTvSeriesSeason,
   TvSeriesSaveWatchList,
   TvSeriesRemoveWatchlist,
 ])
@@ -26,6 +29,7 @@ void main() {
   late MockGetTvSeriesDetail mockGetTvSeriesDetail;
   late MockGetTvSeriesRecommendation mockGetTvSeriesRecommendation;
   late MockGetTvSeriesWatchListStatus mockGetTvSeriesWatchListStatus;
+  late MockGetTvSeriesSeason mockGetTvSeriesSeason;
   late MockTvSeriesSaveWatchList mockTvSeriesSaveWatchList;
   late MockTvSeriesRemoveWatchlist mockTvSeriesRemoveWatchlist;
   late TvSeriesDetailNotifier provider;
@@ -36,6 +40,7 @@ void main() {
     mockGetTvSeriesDetail = MockGetTvSeriesDetail();
     mockGetTvSeriesRecommendation = MockGetTvSeriesRecommendation();
     mockGetTvSeriesWatchListStatus = MockGetTvSeriesWatchListStatus();
+    mockGetTvSeriesSeason = MockGetTvSeriesSeason();
     mockTvSeriesSaveWatchList = MockTvSeriesSaveWatchList();
     mockTvSeriesRemoveWatchlist = MockTvSeriesRemoveWatchlist();
 
@@ -43,6 +48,7 @@ void main() {
       getTvSeriesDetail: mockGetTvSeriesDetail,
       getTvSeriesRecommendation: mockGetTvSeriesRecommendation,
       getTvSeriesWatchListStatus: mockGetTvSeriesWatchListStatus,
+      getTvSeriesSeason: mockGetTvSeriesSeason,
       tvSeriesSaveWatchList: mockTvSeriesSaveWatchList,
       tvSeriesRemoveWatchlist: mockTvSeriesRemoveWatchlist,
     )..addListener(() {
@@ -69,7 +75,19 @@ void main() {
     voteCount: 1000,
   );
 
+  final tTvSeriesSeason = Season(
+    airDate: "1952-12-26",
+    episodeCount: 6,
+    id: 134441,
+    name: "Season 1952",
+    overview: "",
+    posterPath: "/lEOhLYxSlqYcAlSSunb0fbXkKM5.jpg",
+    seasonNumber: 1,
+    voteAverage: 3.5,
+  );
+
   final tTvSeriesList = <TvSeries>[tTvSeries];
+  final tTvSeriesSeasonList = <Season>[tTvSeriesSeason];
 
   void _arrangeUsecase() {
     when(mockGetTvSeriesDetail.execute(tId))
@@ -123,6 +141,41 @@ void main() {
     });
   });
 
+  group('Get Tv Series Seasons', () {
+    test('should get data from the usecase', () async {
+      // arrange
+      _arrangeUsecase();
+      // act
+      await provider.fetchTvSeriesDetail(id: tId);
+      // assert
+      verify(mockGetTvSeriesRecommendation.execute(tId));
+      expect(provider.tvSeriesSeasons, tTvSeriesSeasonList);
+    });
+
+    test('should update recommendation state when data is gotten successfully',
+        () async {
+      // arrange
+      _arrangeUsecase();
+      // act
+      await provider.fetchTvSeriesDetail(id: tId);
+      // assert
+      expect(provider.getTvSeriesRecommendationState, RequestState.Loaded);
+      expect(provider.tvSeriesSeasons, tTvSeriesSeasonList);
+    });
+
+    test('should update error message when request in successful', () async {
+      // arrange
+      when(mockGetTvSeriesDetail.execute(tId))
+          .thenAnswer((_) async => Right(testTvSeriesDetail));
+      when(mockGetTvSeriesRecommendation.execute(tId))
+          .thenAnswer((_) async => Left(ServerFailure('Failed')));
+      // act
+      await provider.fetchTvSeriesDetail(id: tId);
+      // assert
+      expect(provider.getTvSeriesRecommendationState, RequestState.Error);
+      expect(provider.message, 'Failed');
+    });
+  });
   group('Get Tv Series Recommendations', () {
     test('should get data from the usecase', () async {
       // arrange

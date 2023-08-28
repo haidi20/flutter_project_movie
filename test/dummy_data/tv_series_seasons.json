@@ -1,0 +1,29 @@
+{
+  "_id": "5dac967fed28b90014dbbc04",
+  "air_date": "1952-12-26",
+  "episodes": [
+    {
+      "air_date": "1952-12-26",
+      "episode_number": 1,
+      "episode_type": "standard",
+      "id": 1958839,
+      "name": "Episode 1",
+      "overview": "",
+      "production_code": "",
+      "runtime": 15,
+      "season_number": 1,
+      "show_id": 94722,
+      "still_path": null,
+      "vote_average": 1.0,
+      "vote_count": 2,
+      "crew": [],
+      "guest_stars": []
+    }
+  ],
+  "name": "Season 1952",
+  "overview": "",
+  "id": 134441,
+  "poster_path": "/lEOhLYxSlqYcAlSSunb0fbXkKM5.jpg",
+  "season_number": 1,
+  "vote_average": 3.5
+}

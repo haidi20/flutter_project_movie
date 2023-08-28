@@ -18,6 +18,7 @@ import 'package:ditonton/domain/usecases/get_tv_series_airing_today.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_popular.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_recommendations.dart';
+import 'package:ditonton/domain/usecases/get_tv_series_seasons.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_top_rated.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_watchist_status.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_watchlist.dart';
@@ -39,6 +40,7 @@ import 'package:ditonton/presentation/provider/tv_series_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_series_list_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_series_popular_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_series_search_notifier.dart';
+import 'package:ditonton/presentation/provider/tv_series_season_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_series_top_rated_notifier.dart';
 import 'package:ditonton/presentation/provider/tv_series_watchlist_notifier.dart';
 import 'package:ditonton/presentation/provider/watchlist_movie_notifier.dart';
@@ -130,12 +132,12 @@ void init() {
     () => TvSeriesDetailNotifier(
       getTvSeriesDetail: locator(),
       getTvSeriesRecommendation: locator(),
+      getTvSeriesSeason: locator(),
       getTvSeriesWatchListStatus: locator(),
       tvSeriesSaveWatchList: locator(),
       tvSeriesRemoveWatchlist: locator(),
     ),
   );
-
   locator.registerFactory(
     () => TvSeriesListNotifier(
       getTvSeriesPopular: locator(),
@@ -143,34 +145,34 @@ void init() {
       getTvSeriesAiringToday: locator(),
     ),
   );
-
   locator.registerFactory(
     () => TvSeriesPopularNotifier(
       getTvSeriesPopular: locator(),
     ),
   );
-
   locator.registerFactory(
     () => TvSeriesSearchNotifier(
       searchTvSeries: locator(),
     ),
   );
-
   locator.registerFactory(
     () => TvSeriesTopRatedNotifier(
       getTvSeriesTopRated: locator(),
     ),
   );
-
   locator.registerFactory(
     () => TvSeriesWatchListNotifier(
       getTvseriesWatchlist: locator(),
     ),
   );
-
   locator.registerFactory(
     () => TvSeriesAiringTodayNotifier(
       getTvSeriesAiringToday: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvSeriesSeasonNotifier(
+      getTvSeriesSeason: locator(),
     ),
   );
 
@@ -179,6 +181,7 @@ void init() {
   locator.registerLazySingleton(() => GetTvSeriesDetail(locator()));
   locator.registerLazySingleton(() => GetTvSeriesPopular(locator()));
   locator.registerLazySingleton(() => GetTvSeriesRecommendation(locator()));
+  locator.registerLazySingleton(() => GetTvSeriesSeason(locator()));
   locator.registerLazySingleton(() => GetTvSeriesTopRated(locator()));
   locator.registerLazySingleton(() => GetTvSeriesWatchListStatus(locator()));
   locator.registerLazySingleton(() => GetTvSeriesWatchList(locator()));

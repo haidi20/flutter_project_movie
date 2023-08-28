@@ -23,6 +23,7 @@ void main() {
     voteAverage: 7.5,
     voteCount: 127,
   );
+
   final tTvSeriesResponseModel =
       TvSeriesResponse(TvSeriesList: <TvSeriesModel>[tTvSeriesModel]);
 

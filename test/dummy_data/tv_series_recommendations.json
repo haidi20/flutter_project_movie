@@ -1,0 +1,29 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/7gbmM2NWcqZONbp65HUWDf4wr0Q.jpg",
+      "id": 88040,
+      "name": "Given",
+      "original_language": "ja",
+      "original_name": "ギヴン",
+      "overview": "Tightly clutching his Gibson guitar, Mafuyu Satou steps out of his dark apartment to begin another day of his high school life. While taking a nap in a quiet spot on the gymnasium staircase, he has a chance encounter with fellow student Ritsuka Uenoyama, who berates him for letting his guitar's strings rust and break. Noticing Uenoyama's knowledge of the instrument, Satou pleads for him to fix it and to teach him how to play. Uenoyama eventually agrees and invites him to sit in on a jam session with his two band mates: bassist Haruki Nakayama and drummer Akihiko Kaji.",
+      "poster_path": "/lTP5yFKt2wzv8vM4EheNgIejEVu.jpg",
+      "media_type": "tv",
+      "genre_ids": [
+        16,
+        18
+      ],
+      "popularity": 23.221,
+      "first_air_date": "2019-07-12",
+      "vote_average": 8.566,
+      "vote_count": 701,
+      "origin_country": [
+        "JP"
+      ]
+    }
+  ],
+  "total_pages": 2,
+  "total_results": 40
+}
