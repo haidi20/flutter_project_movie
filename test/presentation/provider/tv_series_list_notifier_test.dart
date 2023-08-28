@@ -1,8 +1,8 @@
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/domain/entities/tv_series.dart';
-import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
-import 'package:ditonton/presentation/provider/tv_series_list_notifier.dart';
+import 'package:core/domain/entities/tv_series.dart';
+import 'package:core/domain/usecases/get_tv_series_detail.dart';
+import 'package:core/presentation/provider/tv_series_list_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

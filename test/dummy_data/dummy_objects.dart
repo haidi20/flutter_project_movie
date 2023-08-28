@@ -1,19 +1,19 @@
-import 'package:ditonton/data/models/episod_to_air_model.dart';
-import 'package:ditonton/data/models/genre_model.dart';
-import 'package:ditonton/data/models/movie_detail_model.dart';
-import 'package:ditonton/data/models/movie_model.dart';
-import 'package:ditonton/data/models/movie_table.dart';
-import 'package:ditonton/data/models/tv_series_table.dart';
-import 'package:ditonton/domain/entities/genre.dart';
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/entities/movie_detail.dart';
-import 'package:ditonton/domain/entities/networks.dart';
-import 'package:ditonton/domain/entities/product_company.dart';
-import 'package:ditonton/domain/entities/production_country.dart';
-import 'package:ditonton/domain/entities/season.dart';
-import 'package:ditonton/domain/entities/spoken_language.dart';
-import 'package:ditonton/domain/entities/tv_series.dart';
-import 'package:ditonton/domain/entities/tv_series_detail.dart';
+import 'package:core/data/models/episod_to_air_model.dart';
+import 'package:core/data/models/genre_model.dart';
+import 'package:core/data/models/movie_detail_model.dart';
+import 'package:core/data/models/movie_model.dart';
+import 'package:core/data/models/movie_table.dart';
+import 'package:core/data/models/tv_series_table.dart';
+import 'package:core/domain/entities/genre.dart';
+import 'package:core/domain/entities/movie.dart';
+import 'package:core/domain/entities/movie_detail.dart';
+import 'package:core/domain/entities/networks.dart';
+import 'package:core/domain/entities/product_company.dart';
+import 'package:core/domain/entities/production_country.dart';
+import 'package:core/domain/entities/season.dart';
+import 'package:core/domain/entities/spoken_language.dart';
+import 'package:core/domain/entities/tv_series.dart';
+import 'package:core/domain/entities/tv_series_detail.dart';
 
 final testMovie = Movie(
   adult: false,

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:ditonton/data/models/episod_model.dart';
-import 'package:ditonton/data/models/season_detail_model.dart';
-import 'package:ditonton/data/models/tv_series_season_response.dart';
+import 'package:core/data/models/episod_model.dart';
+import 'package:core/data/models/season_detail_model.dart';
+import 'package:core/data/models/tv_series_season_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../json_reader.dart';

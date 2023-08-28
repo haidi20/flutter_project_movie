@@ -1,7 +1,7 @@
 import 'package:core/core.dart';
-import 'package:ditonton/domain/entities/tv_series.dart';
-import 'package:ditonton/presentation/pages/tv_series_popular_page.dart';
-import 'package:ditonton/presentation/provider/tv_series_popular_notifier.dart';
+import 'package:core/domain/entities/tv_series.dart';
+import 'package:core/presentation/pages/tv_series_popular_page.dart';
+import 'package:core/presentation/provider/tv_series_popular_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

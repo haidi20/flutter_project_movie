@@ -2,17 +2,17 @@ import 'dart:io';
 
 import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/data/models/episod_to_air_model.dart';
-import 'package:ditonton/data/models/genre_model.dart';
-import 'package:ditonton/data/models/network_model.dart';
-import 'package:ditonton/data/models/product_company_model.dart';
-import 'package:ditonton/data/models/product_country_model.dart';
-import 'package:ditonton/data/models/season_model.dart';
-import 'package:ditonton/data/models/spoken_language_model.dart';
-import 'package:ditonton/data/models/tv_series_detail_model.dart';
-import 'package:ditonton/data/models/tv_series_model.dart';
-import 'package:ditonton/data/repositories/tv_series_repository_impl.dart';
-import 'package:ditonton/domain/entities/tv_series.dart';
+import 'package:core/data/models/episod_to_air_model.dart';
+import 'package:core/data/models/genre_model.dart';
+import 'package:core/data/models/network_model.dart';
+import 'package:core/data/models/product_company_model.dart';
+import 'package:core/data/models/product_country_model.dart';
+import 'package:core/data/models/season_model.dart';
+import 'package:core/data/models/spoken_language_model.dart';
+import 'package:core/data/models/tv_series_detail_model.dart';
+import 'package:core/data/models/tv_series_model.dart';
+import 'package:core/data/repositories/tv_series_repository_impl.dart';
+import 'package:core/domain/entities/tv_series.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
