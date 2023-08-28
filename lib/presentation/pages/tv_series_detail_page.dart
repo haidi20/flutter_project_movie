@@ -186,6 +186,18 @@ class DetailContent extends StatelessWidget {
                                 Text('${tvSeriesDetail.voteAverage}')
                               ],
                             ),
+                            Row(
+                              children: [
+                                Text(
+                                    "Total Season: ${tvSeriesDetail.numberOfSeasons}"),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                    "Total Episode: ${tvSeriesDetail.numberOfEpisodes}"),
+                              ],
+                            ),
                             SizedBox(height: 16),
                             Text(
                               'Overview',
