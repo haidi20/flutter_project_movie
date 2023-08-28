@@ -1,4 +1,4 @@
-import 'package:ditonton/common/state_enum.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/presentation/pages/tv_series_airing_today_page.dart';
 import 'package:ditonton/presentation/provider/tv_series_airing_today_notifier.dart';

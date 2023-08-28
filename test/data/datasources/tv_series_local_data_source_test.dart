@@ -1,4 +1,4 @@
-import 'package:ditonton/common/exception.dart';
+import 'package:core/core.dart';
 import 'package:ditonton/data/datasources/tv_series_local_data_source.dart';
 import 'package:ditonton/data/models/tv_series_table.dart';
 import 'package:flutter_test/flutter_test.dart';

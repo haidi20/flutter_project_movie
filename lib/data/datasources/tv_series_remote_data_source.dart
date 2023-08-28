@@ -1,10 +1,10 @@
 import 'dart:convert';
 
+import 'package:core/core.dart';
 import 'package:ditonton/data/models/season_detail_model.dart';
 import 'package:ditonton/data/models/tv_series_detail_model.dart';
 import 'package:ditonton/data/models/tv_series_season_response.dart';
 import 'package:http/http.dart' as http;
-import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/data/models/tv_series_response.dart';
 
 import 'package:ditonton/data/models/tv_series_model.dart';

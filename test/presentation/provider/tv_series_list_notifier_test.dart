@@ -1,6 +1,5 @@
+import 'package:core/core.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/domain/usecases/get_tv_series_detail.dart';
 import 'package:ditonton/presentation/provider/tv_series_list_notifier.dart';
@@ -11,7 +10,6 @@ import 'package:mockito/mockito.dart';
 import 'tv_series_airing_today_notifier_test.mocks.dart';
 import 'tv_series_popular_notifier_test.mocks.dart';
 import 'tv_series_top_rated_notifier_test.mocks.dart';
-import 'tv_series_watchlist_notifier_test.mocks.dart';
 
 @GenerateMocks([GetTvSeriesDetail])
 void main() {

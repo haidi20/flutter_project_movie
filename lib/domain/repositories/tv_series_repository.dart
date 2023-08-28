@@ -1,5 +1,6 @@
+import 'package:core/utils/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/common/failure.dart';
+// import '../../../core/lib/common/failure.dart';
 import 'package:ditonton/domain/entities/season_detail.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/domain/entities/tv_series_detail.dart';
