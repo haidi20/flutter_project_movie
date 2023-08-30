@@ -1,4 +1,6 @@
-class EpisodeToAir {
+import 'package:equatable/equatable.dart';
+
+class EpisodeToAir extends Equatable {
   EpisodeToAir({
     this.id,
     this.name,

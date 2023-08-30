@@ -300,4 +300,3 @@ final testTvSeriesDetail = TvSeriesDetail(
   voteAverage: 7.531,
   voteCount: 127,
 );
-// end tv series

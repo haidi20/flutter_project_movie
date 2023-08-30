@@ -259,7 +259,7 @@ void main() {
 
   group('Get tv series Detail', () {
     final tId = 1;
-    final testTvSeriesDetailResponse = TvSeriesDetailModel(
+    final testTvSeriesDetailModel = TvSeriesDetailModel(
       adult: false,
       backdropPath: "/jWXrQstj7p3Wl5MfYWY6IHqRpDb.jpg",
       createdBy: [],
@@ -369,7 +369,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTvSeriesDetail(id: tId))
-          .thenAnswer((_) async => testTvSeriesDetailResponse);
+          .thenAnswer((_) async => testTvSeriesDetailModel);
       // act
       final result = await repository.getTvSeriesDetail(id: tId);
       // assert
