@@ -57,9 +57,7 @@ class SeasonDetailModel extends Equatable {
     data['poster_path'] = posterPath;
     data['season_number'] = seasonNumber;
     data['vote_average'] = voteAverage;
-    if (episodes != null) {
-      data['episodes'] = episodes!.map((episode) => episode.toJson()).toList();
-    }
+    data['episodes'] = episodes.map((episode) => episode.toJson()).toList();
     return data;
   }
 

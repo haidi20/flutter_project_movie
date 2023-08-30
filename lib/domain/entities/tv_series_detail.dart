@@ -1,4 +1,4 @@
-import 'package:ditonton/data/models/episod_to_air_model.dart';
+import 'package:ditonton/domain/entities/episod_to_air.dart';
 import 'package:ditonton/domain/entities/networks.dart';
 import 'package:ditonton/domain/entities/product_company.dart';
 import 'package:ditonton/domain/entities/production_country.dart';
@@ -54,9 +54,9 @@ class TvSeriesDetail extends Equatable {
   final bool? inProduction;
   final List<String>? languages;
   final String? lastAirDate;
-  final EpisodeToAirModel? lastEpisodeToAir;
+  final EpisodeToAir? lastEpisodeToAir;
   final String? name;
-  final EpisodeToAirModel? nextEpisodeToAir;
+  final EpisodeToAir? nextEpisodeToAir;
   final List<Networks>? networks;
   final int? numberOfEpisodes;
   final int? numberOfSeasons;

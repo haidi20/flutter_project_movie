@@ -11,7 +11,6 @@ import 'package:mockito/mockito.dart';
 import 'tv_series_airing_today_notifier_test.mocks.dart';
 import 'tv_series_popular_notifier_test.mocks.dart';
 import 'tv_series_top_rated_notifier_test.mocks.dart';
-import 'tv_series_watchlist_notifier_test.mocks.dart';
 
 @GenerateMocks([GetTvSeriesDetail])
 void main() {
