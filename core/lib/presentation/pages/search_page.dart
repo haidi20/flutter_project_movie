@@ -4,8 +4,11 @@ import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+@immutable
 class SearchPage extends StatelessWidget {
   static const ROUTE_NAME = '/search';
+
+  const SearchPage({key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +40,11 @@ class SearchPage extends StatelessWidget {
             ),
             Consumer<MovieSearchNotifier>(
               builder: (context, data, child) {
-                if (data.state == RequestState.Loading) {
+                if (data.state == RequestState.isLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (data.state == RequestState.Loaded) {
+                } else if (data.state == RequestState.isLoaded) {
                   final result = data.searchResult;
                   return Expanded(
                     child: ListView.builder(

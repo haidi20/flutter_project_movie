@@ -8,7 +8,7 @@ class TvSeriesPopularNotifier extends ChangeNotifier {
 
   TvSeriesPopularNotifier({required this.getTvSeriesPopular});
 
-  RequestState _state = RequestState.Empty;
+  RequestState _state = RequestState.isEmpty;
   RequestState get state => _state;
 
   List<TvSeries> _tvSeries = [];
@@ -18,19 +18,19 @@ class TvSeriesPopularNotifier extends ChangeNotifier {
   String get message => _message;
 
   Future<void> fetchPopularTvSeries() async {
-    _state = RequestState.Loading;
+    _state = RequestState.isLoading;
     notifyListeners();
 
     final result = await getTvSeriesPopular.execute();
     result.fold(
       (failure) {
         _message = failure.message;
-        _state = RequestState.Error;
+        _state = RequestState.isError;
         notifyListeners();
       },
       (tvSeries) {
         _tvSeries = tvSeries;
-        _state = RequestState.Loaded;
+        _state = RequestState.isLoaded;
         notifyListeners();
       },
     );

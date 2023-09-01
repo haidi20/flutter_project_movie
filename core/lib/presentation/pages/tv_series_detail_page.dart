@@ -38,11 +38,11 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
     return Scaffold(
       body: Consumer<TvSeriesDetailNotifier>(
         builder: (context, provider, child) {
-          if (provider.tvSeriesDetailState == RequestState.Loading) {
+          if (provider.tvSeriesDetailState == RequestState.isLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (provider.tvSeriesDetailState == RequestState.Loaded) {
+          } else if (provider.tvSeriesDetailState == RequestState.isLoaded) {
             final tvSeriesDetail = provider.tvSeriesDetail;
             return SafeArea(
               child: DetailContent(
@@ -257,13 +257,13 @@ class DetailContent extends StatelessWidget {
   Widget _listSeason({required int tvSeriesId}) {
     return Consumer<TvSeriesDetailNotifier>(
       builder: (context, data, child) {
-        if (data.tvSeriesDetailState == RequestState.Loading) {
+        if (data.tvSeriesDetailState == RequestState.isLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.tvSeriesDetailState == RequestState.Error) {
+        } else if (data.tvSeriesDetailState == RequestState.isError) {
           return Text(data.message);
-        } else if (data.tvSeriesDetailState == RequestState.Loaded) {
+        } else if (data.tvSeriesDetailState == RequestState.isLoaded) {
           return SizedBox(
             height: 150,
             child: ListView.builder(
@@ -316,13 +316,15 @@ class DetailContent extends StatelessWidget {
   Widget _listRecommendation() {
     return Consumer<TvSeriesDetailNotifier>(
       builder: (context, data, child) {
-        if (data.getTvSeriesRecommendationState == RequestState.Loading) {
+        if (data.getTvSeriesRecommendationState == RequestState.isLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.getTvSeriesRecommendationState == RequestState.Error) {
+        } else if (data.getTvSeriesRecommendationState ==
+            RequestState.isError) {
           return Text(data.message);
-        } else if (data.getTvSeriesRecommendationState == RequestState.Loaded) {
+        } else if (data.getTvSeriesRecommendationState ==
+            RequestState.isLoaded) {
           return SizedBox(
             height: 150,
             child: ListView.builder(
@@ -392,11 +394,11 @@ class DetailContent extends StatelessWidget {
   Widget _tvSeriesSeasonCard() {
     return Consumer<TvSeriesSeasonNotifier>(
       builder: (context, data, child) {
-        if (data.state == RequestState.Loading) {
+        if (data.state == RequestState.isLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
-        } else if (data.state == RequestState.Loaded) {
+        } else if (data.state == RequestState.isLoaded) {
           return ListView.builder(
             itemBuilder: (context, index) {
               Episode episode = data.tvSeriesSeason.episodes[index];

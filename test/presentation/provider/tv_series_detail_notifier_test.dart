@@ -112,7 +112,7 @@ void main() {
       // act
       provider.fetchTvSeriesDetail(id: tId);
       // assert
-      expect(provider.tvSeriesDetailState, RequestState.Loading);
+      expect(provider.tvSeriesDetailState, RequestState.isLoading);
       expect(listenerCallCount, 1);
     });
 
@@ -122,7 +122,7 @@ void main() {
       // act
       await provider.fetchTvSeriesDetail(id: tId);
       // assert
-      expect(provider.tvSeriesDetailState, RequestState.Loaded);
+      expect(provider.tvSeriesDetailState, RequestState.isLoaded);
       expect(provider.tvSeriesDetail, testTvSeriesDetail);
       expect(listenerCallCount, 3);
     });
@@ -135,7 +135,7 @@ void main() {
       // act
       await provider.fetchTvSeriesDetail(id: tId);
       // assert
-      expect(provider.tvSeriesDetailState, RequestState.Loaded);
+      expect(provider.tvSeriesDetailState, RequestState.isLoaded);
       expect(provider.tvSeriesRecommendations, tTvSeriesList);
     });
   });
@@ -158,7 +158,7 @@ void main() {
       // act
       await provider.fetchTvSeriesDetail(id: tId);
       // assert
-      expect(provider.getTvSeriesRecommendationState, RequestState.Loaded);
+      expect(provider.getTvSeriesRecommendationState, RequestState.isLoaded);
       expect(provider.tvSeriesSeasons, tTvSeriesSeasonList);
     });
 
@@ -171,7 +171,7 @@ void main() {
       // act
       await provider.fetchTvSeriesDetail(id: tId);
       // assert
-      expect(provider.getTvSeriesRecommendationState, RequestState.Error);
+      expect(provider.getTvSeriesRecommendationState, RequestState.isError);
       expect(provider.message, 'Failed');
     });
   });
@@ -193,7 +193,7 @@ void main() {
       // act
       await provider.fetchTvSeriesDetail(id: tId);
       // assert
-      expect(provider.getTvSeriesRecommendationState, RequestState.Loaded);
+      expect(provider.getTvSeriesRecommendationState, RequestState.isLoaded);
       expect(provider.tvSeriesRecommendations, tTvSeriesList);
     });
 
@@ -206,7 +206,7 @@ void main() {
       // act
       await provider.fetchTvSeriesDetail(id: tId);
       // assert
-      expect(provider.getTvSeriesRecommendationState, RequestState.Error);
+      expect(provider.getTvSeriesRecommendationState, RequestState.isError);
       expect(provider.message, 'Failed');
     });
   });
@@ -285,7 +285,7 @@ void main() {
       // act
       await provider.fetchTvSeriesDetail(id: tId);
       // assert
-      expect(provider.tvSeriesDetailState, RequestState.Error);
+      expect(provider.tvSeriesDetailState, RequestState.isError);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

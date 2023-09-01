@@ -8,7 +8,7 @@ class TvSeriesSeasonNotifier extends ChangeNotifier {
 
   TvSeriesSeasonNotifier({required this.getTvSeriesSeason});
 
-  RequestState _state = RequestState.Empty;
+  RequestState _state = RequestState.isEmpty;
   RequestState get state => _state;
 
   SeasonDetail _tvSeriesSeason = SeasonDetail(episodes: []);
@@ -19,19 +19,19 @@ class TvSeriesSeasonNotifier extends ChangeNotifier {
 
   Future<void> fetchSeasonDetailTvSeries(
       {required int id, required int seasonNumber}) async {
-    _state = RequestState.Loading;
+    _state = RequestState.isLoading;
     notifyListeners();
 
     final result = await getTvSeriesSeason.execute(id, seasonNumber);
     result.fold(
       (failure) {
         _message = failure.message;
-        _state = RequestState.Error;
+        _state = RequestState.isError;
         notifyListeners();
       },
       (tvSeriesSeason) {
         _tvSeriesSeason = tvSeriesSeason;
-        _state = RequestState.Loaded;
+        _state = RequestState.isLoaded;
         notifyListeners();
       },
     );

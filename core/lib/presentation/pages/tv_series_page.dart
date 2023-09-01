@@ -59,11 +59,11 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
               ),
               Consumer<TvSeriesListNotifier>(builder: (context, data, child) {
                 final state = data.airingTodayState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.isLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.isLoaded) {
                   return TvSeriesList(data.airingTodayTvSeries);
                 } else {
                   return const Text('Failed');
@@ -76,11 +76,11 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
               ),
               Consumer<TvSeriesListNotifier>(builder: (context, data, child) {
                 final state = data.popularState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.isLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.isLoaded) {
                   return TvSeriesList(data.popularTvSeries);
                 } else {
                   return const Text('Failed');
@@ -93,11 +93,11 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
               ),
               Consumer<TvSeriesListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.isLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.isLoaded) {
                   return TvSeriesList(data.topRatedTvSeries);
                 } else {
                   return const Text('Failed');

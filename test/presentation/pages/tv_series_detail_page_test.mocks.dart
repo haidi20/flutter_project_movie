@@ -171,7 +171,7 @@ class MockTvSeriesDetailNotifier extends _i1.Mock
   @override
   _i10.RequestState get tvSeriesDetailState => (super.noSuchMethod(
         Invocation.getter(#tvSeriesDetailState),
-        returnValue: _i10.RequestState.Empty,
+        returnValue: _i10.RequestState.isEmpty,
       ) as _i10.RequestState);
   @override
   _i8.TvSeriesDetail get tvSeriesDetail => (super.noSuchMethod(
@@ -184,7 +184,7 @@ class MockTvSeriesDetailNotifier extends _i1.Mock
   @override
   _i10.RequestState get getTvSeriesRecommendationState => (super.noSuchMethod(
         Invocation.getter(#getTvSeriesRecommendationState),
-        returnValue: _i10.RequestState.Empty,
+        returnValue: _i10.RequestState.isEmpty,
       ) as _i10.RequestState);
   @override
   List<_i11.TvSeries> get tvSeriesRecommendations => (super.noSuchMethod(
@@ -194,7 +194,7 @@ class MockTvSeriesDetailNotifier extends _i1.Mock
   @override
   _i10.RequestState get getTvSeriesSeasonsState => (super.noSuchMethod(
         Invocation.getter(#getTvSeriesSeasonsState),
-        returnValue: _i10.RequestState.Empty,
+        returnValue: _i10.RequestState.isEmpty,
       ) as _i10.RequestState);
   @override
   List<_i12.Season> get tvSeriesSeasons => (super.noSuchMethod(

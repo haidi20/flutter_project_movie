@@ -33,11 +33,11 @@ class _TvSeriesAiringTodayPageState extends State<TvSeriesAiringTodayPage> {
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TvSeriesAiringTodayNotifier>(
           builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+            if (data.state == RequestState.isLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (data.state == RequestState.isLoaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tvSeries = data.tvSeries[index];

@@ -51,7 +51,7 @@ void main() {
     // act
     notifier.fetchAiringTodayTvSeries();
     // assert
-    expect(notifier.state, RequestState.Loading);
+    expect(notifier.state, RequestState.isLoading);
     expect(listenerCallCount, 1);
   });
 
@@ -62,7 +62,7 @@ void main() {
     // act
     await notifier.fetchAiringTodayTvSeries();
     // assert
-    expect(notifier.state, RequestState.Loaded);
+    expect(notifier.state, RequestState.isLoaded);
     expect(notifier.tvSeries, tTvSeriesList);
     expect(listenerCallCount, 2);
   });
@@ -74,7 +74,7 @@ void main() {
     // act
     await notifier.fetchAiringTodayTvSeries();
     // assert
-    expect(notifier.state, RequestState.Error);
+    expect(notifier.state, RequestState.isError);
     expect(notifier.message, 'Server Failure');
     expect(listenerCallCount, 2);
   });

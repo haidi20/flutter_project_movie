@@ -54,11 +54,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.isLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.isLoaded) {
                   return MovieList(data.nowPlayingMovies);
                 } else {
                   return const Text('Failed');
@@ -71,11 +71,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.popularMoviesState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.isLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.isLoaded) {
                   return MovieList(data.popularMovies);
                 } else {
                   return const Text('Failed');
@@ -88,11 +88,11 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedMoviesState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.isLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.isLoaded) {
                   return MovieList(data.topRatedMovies);
                 } else {
                   return const Text('Failed');

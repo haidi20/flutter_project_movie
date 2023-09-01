@@ -9,19 +9,19 @@ class MovieListNotifier extends ChangeNotifier {
   var _nowPlayingMovies = <Movie>[];
   List<Movie> get nowPlayingMovies => _nowPlayingMovies;
 
-  RequestState _nowPlayingState = RequestState.Empty;
+  RequestState _nowPlayingState = RequestState.isEmpty;
   RequestState get nowPlayingState => _nowPlayingState;
 
   var _popularMovies = <Movie>[];
   List<Movie> get popularMovies => _popularMovies;
 
-  RequestState _popularMoviesState = RequestState.Empty;
+  RequestState _popularMoviesState = RequestState.isEmpty;
   RequestState get popularMoviesState => _popularMoviesState;
 
   var _topRatedMovies = <Movie>[];
   List<Movie> get topRatedMovies => _topRatedMovies;
 
-  RequestState _topRatedMoviesState = RequestState.Empty;
+  RequestState _topRatedMoviesState = RequestState.isEmpty;
   RequestState get topRatedMoviesState => _topRatedMoviesState;
 
   String _message = '';
@@ -38,18 +38,18 @@ class MovieListNotifier extends ChangeNotifier {
   final GetTopRatedMovies getTopRatedMovies;
 
   Future<void> fetchNowPlayingMovies() async {
-    _nowPlayingState = RequestState.Loading;
+    _nowPlayingState = RequestState.isLoading;
     notifyListeners();
 
     final result = await getNowPlayingMovies.execute();
     result.fold(
       (failure) {
-        _nowPlayingState = RequestState.Error;
+        _nowPlayingState = RequestState.isError;
         _message = failure.message;
         notifyListeners();
       },
       (moviesData) {
-        _nowPlayingState = RequestState.Loaded;
+        _nowPlayingState = RequestState.isLoaded;
         _nowPlayingMovies = moviesData;
         notifyListeners();
       },
@@ -57,18 +57,18 @@ class MovieListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchPopularMovies() async {
-    _popularMoviesState = RequestState.Loading;
+    _popularMoviesState = RequestState.isLoading;
     notifyListeners();
 
     final result = await getPopularMovies.execute();
     result.fold(
       (failure) {
-        _popularMoviesState = RequestState.Error;
+        _popularMoviesState = RequestState.isError;
         _message = failure.message;
         notifyListeners();
       },
       (moviesData) {
-        _popularMoviesState = RequestState.Loaded;
+        _popularMoviesState = RequestState.isLoaded;
         _popularMovies = moviesData;
         notifyListeners();
       },
@@ -76,18 +76,18 @@ class MovieListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchTopRatedMovies() async {
-    _topRatedMoviesState = RequestState.Loading;
+    _topRatedMoviesState = RequestState.isLoading;
     notifyListeners();
 
     final result = await getTopRatedMovies.execute();
     result.fold(
       (failure) {
-        _topRatedMoviesState = RequestState.Error;
+        _topRatedMoviesState = RequestState.isError;
         _message = failure.message;
         notifyListeners();
       },
       (moviesData) {
-        _topRatedMoviesState = RequestState.Loaded;
+        _topRatedMoviesState = RequestState.isLoaded;
         _topRatedMovies = moviesData;
         notifyListeners();
       },

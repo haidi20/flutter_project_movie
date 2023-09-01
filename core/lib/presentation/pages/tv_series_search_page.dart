@@ -39,11 +39,11 @@ class TvSeriesSearchPage extends StatelessWidget {
             ),
             Consumer<TvSeriesSearchNotifier>(
               builder: (context, data, child) {
-                if (data.state == RequestState.Loading) {
+                if (data.state == RequestState.isLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (data.state == RequestState.Loaded) {
+                } else if (data.state == RequestState.isLoaded) {
                   final result = data.tvSeriesList;
                   return Expanded(
                     child: ListView.builder(

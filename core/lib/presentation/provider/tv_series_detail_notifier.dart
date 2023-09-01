@@ -30,18 +30,18 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
   static const watchlistAddSuccessMessage = 'Added to Watchlist';
   static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
 
-  RequestState _tvSeriesDetailState = RequestState.Empty;
+  RequestState _tvSeriesDetailState = RequestState.isEmpty;
   RequestState get tvSeriesDetailState => _tvSeriesDetailState;
   late TvSeriesDetail _tvSeriesDetail;
   TvSeriesDetail get tvSeriesDetail => _tvSeriesDetail;
 
-  RequestState _tvSeriesRecommendationsState = RequestState.Empty;
+  RequestState _tvSeriesRecommendationsState = RequestState.isEmpty;
   RequestState get getTvSeriesRecommendationState =>
       _tvSeriesRecommendationsState;
   List<TvSeries> _tvSeriesRecommendations = [];
   List<TvSeries> get tvSeriesRecommendations => _tvSeriesRecommendations;
 
-  RequestState _tvSeriesSeasonsState = RequestState.Empty;
+  final RequestState _tvSeriesSeasonsState = RequestState.isEmpty;
   RequestState get getTvSeriesSeasonsState => _tvSeriesSeasonsState;
   List<Season> _tvSeriesSeasons = [];
   List<Season> get tvSeriesSeasons => _tvSeriesSeasons;
@@ -53,7 +53,7 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
   bool get isAddedToWatchlist => _isAddedtoWatchlist;
 
   Future<void> fetchTvSeriesDetail({required int id}) async {
-    _tvSeriesDetailState = RequestState.Loading;
+    _tvSeriesDetailState = RequestState.isLoading;
     notifyListeners();
 
     final detailResult = await getTvSeriesDetail.execute(id);
@@ -62,13 +62,13 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
 
     detailResult.fold(
       (failure) {
-        _tvSeriesDetailState = RequestState.Error;
+        _tvSeriesDetailState = RequestState.isError;
         _message = failure.message;
         notifyListeners();
       },
       (tvSeries) {
         _tvSeriesDetail = tvSeries;
-        _tvSeriesDetailState = RequestState.Loaded;
+        _tvSeriesDetailState = RequestState.isLoaded;
         notifyListeners();
 
         // season list season
@@ -78,13 +78,13 @@ class TvSeriesDetailNotifier extends ChangeNotifier {
 
         recommendationResult.fold(
           (failure) {
-            _tvSeriesRecommendationsState = RequestState.Error;
+            _tvSeriesRecommendationsState = RequestState.isError;
             _message = failure.message;
             notifyListeners();
           },
           (tvSeries) {
             _tvSeriesRecommendations = tvSeries;
-            _tvSeriesRecommendationsState = RequestState.Loaded;
+            _tvSeriesRecommendationsState = RequestState.isLoaded;
             notifyListeners();
           },
         );
