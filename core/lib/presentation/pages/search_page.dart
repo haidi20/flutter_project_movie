@@ -53,9 +53,16 @@ class SearchPage extends StatelessWidget {
                       itemCount: result.length,
                     ),
                   );
+                } else if (data.searchResult.isEmpty) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text("data tidak ada"),
+                    ),
+                  );
                 } else {
-                  return Expanded(
-                    child: Container(),
+                  return Center(
+                    key: const Key('error_message'),
+                    child: Text(data.message),
                   );
                 }
               },

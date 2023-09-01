@@ -54,6 +54,12 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
                 },
                 itemCount: data.watchlistMovies.length,
               );
+            } else if (data.watchlistMovies.isEmpty) {
+              return const Expanded(
+                child: Center(
+                  child: Text("data tidak ada"),
+                ),
+              );
             } else {
               return Center(
                 key: const Key('error_message'),

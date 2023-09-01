@@ -13,7 +13,7 @@ class TvSeriesSearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: const Text('Search'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -55,9 +55,16 @@ class TvSeriesSearchPage extends StatelessWidget {
                       itemCount: result.length,
                     ),
                   );
+                } else if (data.tvSeriesList.isEmpty) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text("data tidak ada"),
+                    ),
+                  );
                 } else {
-                  return Expanded(
-                    child: Container(),
+                  return Center(
+                    key: const Key('error_message'),
+                    child: Text(data.message),
                   );
                 }
               },

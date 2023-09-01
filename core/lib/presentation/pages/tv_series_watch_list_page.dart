@@ -27,6 +27,7 @@ class _TvSeriesWatchListPageState extends State<TvSeriesWatchListPage>
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     Provider.of<TvSeriesWatchListNotifier>(context, listen: false)
         .fetchWatchlistTvSeries();
@@ -53,6 +54,12 @@ class _TvSeriesWatchListPageState extends State<TvSeriesWatchListPage>
                   return TvSeriesCard(tvSeries);
                 },
                 itemCount: data.watchlistTvSeries.length,
+              );
+            } else if (data.watchlistTvSeries.isEmpty) {
+              return const Expanded(
+                child: Center(
+                  child: Text("data tidak ada"),
+                ),
               );
             } else {
               return Center(
