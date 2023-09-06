@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/domain/entities/movie.dart';
+import 'package:movie/presentation/bloc/movie_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
-import 'package:movie/presentation/provider/movie_list_notifier.dart';
 import 'package:core/presentation/widgets/drawer_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:search/presentation/pages/search_page.dart';
 
 class HomeMoviePage extends StatefulWidget {
@@ -21,12 +21,10 @@ class HomeMoviePage extends StatefulWidget {
 class _HomeMoviePageState extends State<HomeMoviePage> {
   @override
   void initState() {
+    context.read<MovieNowPlayingBloc>().add(const FetchNowPlayingMovies());
+    context.read<MoviePopularBloc>().add(const FetchPopularMovies());
+    context.read<MovieTopRatedBloc>().add(const FetchTopRatedMovies());
     super.initState();
-    Future.microtask(
-        () => Provider.of<MovieListNotifier>(context, listen: false)
-          ..fetchNowPlayingMovies()
-          ..fetchPopularMovies()
-          ..fetchTopRatedMovies());
   }
 
   @override
@@ -46,62 +44,113 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Now Playing',
-                style: kHeading6,
-              ),
-              Consumer<MovieListNotifier>(builder: (context, data, child) {
-                final state = data.nowPlayingState;
-                if (state == RequestState.isLoading) {
+        child: ListView(
+          children: [
+            Text(
+              'Now Playing',
+              style: kHeading6,
+            ),
+            BlocBuilder<MovieNowPlayingBloc, MovieState>(
+              builder: (context, state) {
+                if (state is Loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.isLoaded) {
-                  return MovieList(data.nowPlayingMovies);
+                } else if (state is MovieHasNowPlayingData) {
+                  final nowPlaying = state.nowPlaying;
+                  return MovieList(nowPlaying);
+                } else if (state is Empty) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text("data tidak ada"),
+                    ),
+                  );
+                } else if (state is Error) {
+                  return Expanded(
+                    child: Center(
+                      child: Text(state.message),
+                    ),
+                  );
                 } else {
-                  return const Text('Failed');
+                  return const Expanded(
+                    child: Center(
+                      child: Text("else"),
+                    ),
+                  );
                 }
-              }),
-              _buildSubHeading(
-                title: 'Popular',
-                onTap: () =>
-                    Navigator.pushNamed(context, PopularMoviesPage.routeName),
-              ),
-              Consumer<MovieListNotifier>(builder: (context, data, child) {
-                final state = data.popularMoviesState;
-                if (state == RequestState.isLoading) {
+              },
+            ),
+            _buildSubHeading(
+              title: 'Popular',
+              onTap: () =>
+                  Navigator.pushNamed(context, PopularMoviesPage.routeName),
+            ),
+            BlocBuilder<MoviePopularBloc, MovieState>(
+              builder: (context, state) {
+                if (state is Loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.isLoaded) {
-                  return MovieList(data.popularMovies);
+                } else if (state is DataLoaded) {
+                  final popular = state.result;
+                  return MovieList(popular);
+                } else if (state is Empty) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text("data tidak ada"),
+                    ),
+                  );
+                } else if (state is Error) {
+                  return Expanded(
+                    child: Center(
+                      child: Text(state.message),
+                    ),
+                  );
                 } else {
-                  return const Text('Failed');
+                  return const Expanded(
+                    child: Center(
+                      child: Text("else"),
+                    ),
+                  );
                 }
-              }),
-              _buildSubHeading(
-                title: 'Top Rated',
-                onTap: () =>
-                    Navigator.pushNamed(context, TopRatedMoviesPage.routeName),
-              ),
-              Consumer<MovieListNotifier>(builder: (context, data, child) {
-                final state = data.topRatedMoviesState;
-                if (state == RequestState.isLoading) {
+              },
+            ),
+            _buildSubHeading(
+              title: 'Top Rated',
+              onTap: () =>
+                  Navigator.pushNamed(context, TopRatedMoviesPage.routeName),
+            ),
+            BlocBuilder<MovieTopRatedBloc, MovieState>(
+              builder: (context, state) {
+                if (state is Loading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.isLoaded) {
-                  return MovieList(data.topRatedMovies);
+                } else if (state is DataLoaded) {
+                  final popular = state.result;
+                  return MovieList(popular);
+                } else if (state is Empty) {
+                  return const Expanded(
+                    child: Center(
+                      child: Text("data tidak ada"),
+                    ),
+                  );
+                } else if (state is Error) {
+                  return Expanded(
+                    child: Center(
+                      child: Text(state.message),
+                    ),
+                  );
                 } else {
-                  return const Text('Failed');
+                  return const Expanded(
+                    child: Center(
+                      child: Text("else"),
+                    ),
+                  );
                 }
-              }),
-            ],
-          ),
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -132,13 +181,14 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
 class MovieList extends StatelessWidget {
   final List<Movie> movies;
 
-  MovieList(this.movies);
+  const MovieList(this.movies, {super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
       child: ListView.builder(
+        itemCount: movies.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           final movie = movies[index];
@@ -165,7 +215,6 @@ class MovieList extends StatelessWidget {
             ),
           );
         },
-        itemCount: movies.length,
       ),
     );
   }
