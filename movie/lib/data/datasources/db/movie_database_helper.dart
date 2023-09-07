@@ -35,7 +35,8 @@ class MovieDatabaseHelper {
   }
 
   void _onCreate(Database db, int version) async {
-    await db.execute('''
+    await db.execute(
+        '''
       CREATE TABLE  $_tblWatchlist (
         id INTEGER PRIMARY KEY,
         title TEXT,
@@ -43,7 +44,8 @@ class MovieDatabaseHelper {
         posterPath TEXT
       );
     ''');
-    await db.execute('''
+    await db.execute(
+        '''
       CREATE TABLE  $_tblCache (
         id INTEGER PRIMARY KEY,
         title TEXT,

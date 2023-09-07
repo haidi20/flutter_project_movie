@@ -76,7 +76,7 @@ void main() {
     // wait: const Duration(milliseconds: 500),
     expect: () => [
       Loading(),
-      MovieHasNowPlayingData(tMovieList),
+      DataLoaded(tMovieList),
     ],
     verify: (bloc) {
       verify(mockGetNowPlayingMovies.execute());

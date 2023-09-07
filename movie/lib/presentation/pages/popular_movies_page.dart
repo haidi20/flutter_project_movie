@@ -1,8 +1,7 @@
-import 'package:core/core.dart';
-import 'package:movie/presentation/provider/popular_movies_notifier.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/presentation/bloc/movie_bloc.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class PopularMoviesPage extends StatefulWidget {
   static const routeName = '/popular-movie';
@@ -15,10 +14,8 @@ class PopularMoviesPage extends StatefulWidget {
 class _PopularMoviesPageState extends State<PopularMoviesPage> {
   @override
   void initState() {
+    context.read<MoviePopularBloc>().add(const FetchPopularMovies());
     super.initState();
-    Future.microtask(() =>
-        Provider.of<PopularMoviesNotifier>(context, listen: false)
-            .fetchPopularMovies());
   }
 
   @override
@@ -29,24 +26,38 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<PopularMoviesNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.isLoading) {
+        child: BlocBuilder<MoviePopularBloc, MovieState>(
+          builder: (context, state) {
+            if (state is Loading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.isLoaded) {
+            } else if (state is DataLoaded) {
+              final populars = state.result;
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = data.movies[index];
-                  return MovieCard(movie);
+                  final popular = populars[index];
+                  return MovieCard(popular);
                 },
-                itemCount: data.movies.length,
+                itemCount: populars.length,
+              );
+            } else if (state is Empty) {
+              return const Expanded(
+                child: Center(
+                  child: Text("data tidak ada"),
+                ),
+              );
+            } else if (state is Error) {
+              return Expanded(
+                child: Center(
+                  child: Text(state.message),
+                ),
               );
             } else {
-              return Center(
-                key: const Key('error_message'),
-                child: Text(data.message),
+              return const Expanded(
+                child: Center(
+                  child: Text("else"),
+                ),
               );
             }
           },

@@ -56,9 +56,9 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state is MovieHasNowPlayingData) {
-                  final nowPlaying = state.nowPlaying;
-                  return MovieList(nowPlaying);
+                } else if (state is DataLoaded) {
+                  final nowPlayings = state.result;
+                  return MovieList(nowPlayings);
                 } else if (state is Empty) {
                   return const Expanded(
                     child: Center(
@@ -92,8 +92,8 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is DataLoaded) {
-                  final popular = state.result;
-                  return MovieList(popular);
+                  final populars = state.result;
+                  return MovieList(populars);
                 } else if (state is Empty) {
                   return const Expanded(
                     child: Center(
@@ -127,8 +127,8 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is DataLoaded) {
-                  final popular = state.result;
-                  return MovieList(popular);
+                  final topRateds = state.result;
+                  return MovieList(topRateds);
                 } else if (state is Empty) {
                   return const Expanded(
                     child: Center(
