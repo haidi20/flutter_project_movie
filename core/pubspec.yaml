@@ -4,7 +4,7 @@ version: 0.0.1
 publish_to: 'none'
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
+  sdk: '>=3.1.0 <=4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -22,7 +22,13 @@ dependencies:
       url: https://github.com/chornthorn/data_connection_checker.git
       ref: master
   about:
-    path: ../about
+    path: ../modules/about
+  search:
+    path: ../modules/search
+  movie:
+    path: ../modules/movie
+  tv_series:
+    path: ../modules/tv_series
 
 dev_dependencies:
   flutter_test:

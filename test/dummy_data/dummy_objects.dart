@@ -1,19 +1,19 @@
-import 'package:core/data/models/episod_to_air_model.dart';
 import 'package:core/data/models/genre_model.dart';
-import 'package:core/data/models/movie_detail_model.dart';
-import 'package:core/data/models/movie_model.dart';
-import 'package:core/data/models/movie_table.dart';
-import 'package:core/data/models/tv_series_table.dart';
+import 'package:movie/data/models/movie_detail_model.dart';
+import 'package:movie/data/models/movie_model.dart';
+import 'package:movie/data/models/movie_table.dart';
+import 'package:tv_series/data/models/tv_series_table.dart';
 import 'package:core/domain/entities/genre.dart';
-import 'package:core/domain/entities/movie.dart';
-import 'package:core/domain/entities/movie_detail.dart';
-import 'package:core/domain/entities/networks.dart';
-import 'package:core/domain/entities/product_company.dart';
-import 'package:core/domain/entities/production_country.dart';
-import 'package:core/domain/entities/season.dart';
-import 'package:core/domain/entities/spoken_language.dart';
-import 'package:core/domain/entities/tv_series.dart';
-import 'package:core/domain/entities/tv_series_detail.dart';
+import 'package:movie/domain/entities/movie.dart';
+import 'package:movie/domain/entities/movie_detail.dart';
+import 'package:tv_series/domain/entities/episod_to_air.dart';
+import 'package:tv_series/domain/entities/networks.dart';
+import 'package:tv_series/domain/entities/product_company.dart';
+import 'package:tv_series/domain/entities/production_country.dart';
+import 'package:tv_series/domain/entities/season.dart';
+import 'package:tv_series/domain/entities/spoken_language.dart';
+import 'package:tv_series/domain/entities/tv_series.dart';
+import 'package:tv_series/domain/entities/tv_series_detail.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -213,7 +213,7 @@ final testTvSeriesDetail = TvSeriesDetail(
   inProduction: true,
   languages: ["de"],
   lastAirDate: "2023-08-22",
-  lastEpisodeToAir: EpisodeToAirModel(
+  lastEpisodeToAir: EpisodeToAir(
     id: 4533092,
     name: "Episode 234",
     overview: "",
@@ -229,7 +229,7 @@ final testTvSeriesDetail = TvSeriesDetail(
     stillPath: null,
   ),
   name: "Tagesschau",
-  nextEpisodeToAir: EpisodeToAirModel(
+  nextEpisodeToAir: EpisodeToAir(
     id: 4533093,
     name: "Episode 235",
     overview: "",
