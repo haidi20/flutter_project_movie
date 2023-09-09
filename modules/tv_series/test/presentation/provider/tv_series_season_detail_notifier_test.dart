@@ -50,8 +50,8 @@ void main() {
         stillPath: null,
         voteAverage: 1.0,
         voteCount: 2,
-        crew: [],
-        guestStars: [],
+        crew: const [],
+        guestStars: const [],
       ),
     ],
   );

@@ -5,8 +5,8 @@ import 'package:dartz/dartz.dart';
 import 'package:tv_series/data/models/episod_to_air_model.dart';
 import 'package:core/data/models/genre_model.dart';
 import 'package:tv_series/data/models/network_model.dart';
-import 'package:tv_series/data/models/product_company_model.dart';
-import 'package:tv_series/data/models/product_country_model.dart';
+import 'package:tv_series/data/models/production_company_model.dart';
+import 'package:tv_series/data/models/production_country_model.dart';
 import 'package:tv_series/data/models/season_model.dart';
 import 'package:tv_series/data/models/spoken_language_model.dart';
 import 'package:tv_series/data/models/tv_series_detail_model.dart';
@@ -36,7 +36,7 @@ void main() {
     );
   });
 
-  final tTvSeriesModel = TvSeriesModel(
+  const tTvSeriesModel = TvSeriesModel(
     id: 94722,
     name: "Tagesschau",
     posterPath: "/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg",
@@ -53,7 +53,7 @@ void main() {
     voteCount: 1000,
   );
 
-  final tTvSeries = TvSeries(
+  const tTvSeries = TvSeries(
     id: 94722,
     name: "Tagesschau",
     posterPath: "/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg",
@@ -162,7 +162,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getPopular())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getPopular();
       // assert
@@ -201,7 +201,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTopRated())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getTopRated();
       // assert
@@ -212,7 +212,7 @@ void main() {
 
   group('Get Tv Series Recommendations', () {
     final tTvSeriesList = <TvSeriesModel>[];
-    final tId = 1;
+    const tId = 1;
 
     test('should return data Tv Series list when the call is successful',
         () async {
@@ -246,7 +246,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTvSeriesRecommendation(id: tId))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getTvSeriesRecommendation(id: tId);
       // assert
@@ -257,12 +257,12 @@ void main() {
   });
 
   group('Get tv series Detail', () {
-    final tId = 1;
+    const tId = 1;
     final testTvSeriesDetailResponse = TvSeriesDetailModel(
       adult: false,
       backdropPath: "/jWXrQstj7p3Wl5MfYWY6IHqRpDb.jpg",
-      createdBy: [],
-      episodeRunTime: [15],
+      createdBy: const [],
+      episodeRunTime: const [15],
       firstAirDate: "1952-12-26",
       genres: [
         GenreModel(
@@ -273,7 +273,7 @@ void main() {
       homepage: "https://www.tagesschau.de/",
       id: 94722,
       inProduction: true,
-      languages: ["de"],
+      languages: const ["de"],
       lastAirDate: "2023-08-22",
       lastEpisodeToAir: EpisodeToAirModel(
         id: 4533092,
@@ -306,8 +306,8 @@ void main() {
         showId: 94722,
         stillPath: null,
       ),
-      networks: [
-        NetworksModel(
+      networks: const [
+        NetworkModel(
           id: 308,
           logoPath: "/fc0O0mvjl8PbHgZXXY2VgPYos1Z.png",
           name: "ARD",
@@ -316,28 +316,28 @@ void main() {
       ],
       numberOfEpisodes: 20839,
       numberOfSeasons: 72,
-      originCountry: ["DE"],
+      originCountry: const ["DE"],
       originalLanguage: "de",
       originalName: "Tagesschau",
       overview:
           "German daily news program, the oldest still existing program on German television.",
       popularity: 5104.121,
       posterPath: "/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg",
-      productionCompanies: [
-        ProductCompanyModel(
+      productionCompanies: const [
+        ProductionCompanyModel(
           id: 7201,
           logoPath: "/ljV8ZT3CIYCEIEDlTyBliXJVCZr.png",
           name: "NDR",
           originCountry: "DE",
         ),
       ],
-      productionCountries: [
+      productionCountries: const [
         ProductionCountryModel(
           iso31661: "DE",
           name: "Germany",
         ),
       ],
-      seasons: [
+      seasons: const [
         SeasonModel(
           airDate: "1952-12-26",
           episodeCount: 6,
@@ -349,7 +349,7 @@ void main() {
           voteAverage: 3.5,
         ),
       ],
-      spokenLanguages: [
+      spokenLanguages: const [
         SpokenLanguageModel(
           englishName: "German",
           iso6391: "de",
@@ -394,7 +394,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTvSeriesDetail(id: tId))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getTvSeriesDetail(id: tId);
       // assert
@@ -405,7 +405,7 @@ void main() {
   });
 
   group('Search Tv Series', () {
-    final tQuery = 'Tagesschau';
+    const tQuery = 'Tagesschau';
 
     test('should return tv series list when call to data source is successful',
         () async {
@@ -436,7 +436,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.searchTvSeries(tQuery))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.searchTvSeries(tQuery);
       // assert
@@ -453,7 +453,7 @@ void main() {
       // act
       final result = await repository.saveWatchlist(testTvSeriesDetail);
       // assert
-      expect(result, Right('Added to Watchlist'));
+      expect(result, const Right('Added to Watchlist'));
     });
 
     test('should return DatabaseFailure when saving unsuccessful', () async {
@@ -475,7 +475,7 @@ void main() {
       // act
       final result = await repository.removeWatchlist(testTvSeriesDetail);
       // assert
-      expect(result, Right('Removed from watchlist'));
+      expect(result, const Right('Removed from watchlist'));
     });
 
     test('should return DatabaseFailure when remove unsuccessful', () async {
@@ -492,7 +492,7 @@ void main() {
   group('get watchlist status', () {
     test('should return watch status whether data is found', () async {
       // arrange
-      final tId = 1;
+      const tId = 1;
       when(mockLocalDataSource.getTvSeriesById(tId))
           .thenAnswer((_) async => null);
       // act

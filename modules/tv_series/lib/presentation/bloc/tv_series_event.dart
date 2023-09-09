@@ -29,6 +29,19 @@ class FetchRecommendation extends TvSeriesEvent {
       ];
 }
 
+class FetchSeasonDetail extends TvSeriesEvent {
+  final int id;
+
+  const FetchSeasonDetail(
+    this.id,
+  );
+
+  @override
+  List<Object?> get props => [
+        id,
+      ];
+}
+
 class FetchSeason extends TvSeriesEvent {
   final int id;
   final int seassonNumber;

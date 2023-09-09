@@ -37,6 +37,10 @@ void main() {
   setUpAll(() {
     registerFallbackValue(MovieDetailEventFake());
     registerFallbackValue(MovieDetailStateFake());
+    registerFallbackValue(RecommendationEventFake());
+    registerFallbackValue(RecommendationStateFake());
+    registerFallbackValue(WatchListEventFake());
+    registerFallbackValue(WatchListStateFake());
   });
 
   setUp(() {
@@ -78,8 +82,7 @@ void main() {
         (WidgetTester tester) async {
       when(() => mockMovieDetailBloc.state).thenReturn(Loading());
       when(() => mockWatchListBloc.state).thenReturn(Loading());
-      // when(() => mockRecommendationMovieBloc.state)
-      //     .thenReturn(RecommendationMovieLoadingState());
+      when(() => mockRecommendationBloc.state).thenReturn(Loading());
 
       await tester.pumpWidget(
           makeTestableWidget(MovieDetailPage(id: testMovieDetail.id)));

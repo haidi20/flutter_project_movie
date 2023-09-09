@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class ProductCompany extends Equatable {
+class ProductionCompany extends Equatable {
   final int id;
   final String? logoPath;
   final String name;
   final String originCountry;
 
-  ProductCompany({
+  const ProductionCompany({
     required this.id,
     this.logoPath,
     required this.name,

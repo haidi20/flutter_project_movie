@@ -1,8 +1,8 @@
 import 'package:tv_series/data/models/episod_to_air_model.dart';
 import 'package:core/data/models/genre_model.dart';
 import 'package:tv_series/data/models/network_model.dart';
-import 'package:tv_series/data/models/product_company_model.dart';
-import 'package:tv_series/data/models/product_country_model.dart';
+import 'package:tv_series/data/models/production_company_model.dart';
+import 'package:tv_series/data/models/production_country_model.dart';
 import 'package:tv_series/data/models/season_model.dart';
 import 'package:tv_series/data/models/spoken_language_model.dart';
 import 'package:tv_series/domain/entities/tv_series_detail.dart';
@@ -17,7 +17,7 @@ class TvSeriesDetailModel extends Equatable {
     this.firstAirDate,
     this.genres,
     this.homepage,
-    this.id,
+    required this.id,
     this.inProduction,
     this.languages,
     this.lastAirDate,
@@ -32,7 +32,7 @@ class TvSeriesDetailModel extends Equatable {
     this.originalName,
     this.overview,
     this.popularity,
-    this.posterPath,
+    required this.posterPath,
     this.productionCompanies,
     this.productionCountries,
     this.seasons,
@@ -51,14 +51,14 @@ class TvSeriesDetailModel extends Equatable {
   final String? firstAirDate;
   final List<GenreModel>? genres;
   final String? homepage;
-  final int? id;
+  final int id;
   final bool? inProduction;
   final List<String>? languages;
   final String? lastAirDate;
   final EpisodeToAirModel? lastEpisodeToAir;
   final String? name;
   final EpisodeToAirModel? nextEpisodeToAir;
-  final List<NetworksModel>? networks;
+  final List<NetworkModel>? networks;
   final int? numberOfEpisodes;
   final int? numberOfSeasons;
   final List<String>? originCountry;
@@ -66,8 +66,8 @@ class TvSeriesDetailModel extends Equatable {
   final String? originalName;
   final String? overview;
   final double? popularity;
-  final String? posterPath;
-  final List<ProductCompanyModel>? productionCompanies;
+  final String posterPath;
+  final List<ProductionCompanyModel>? productionCompanies;
   final List<ProductionCountryModel>? productionCountries;
   final List<SeasonModel>? seasons;
   final List<SpokenLanguageModel>? spokenLanguages;
@@ -97,8 +97,8 @@ class TvSeriesDetailModel extends Equatable {
         nextEpisodeToAir = json['next_episode_to_air'] != null
             ? EpisodeToAirModel.fromJson(json['next_episode_to_air'])
             : null,
-        networks = List<NetworksModel>.from(
-            json["networks"]?.map((x) => NetworksModel.fromJson(x)) ?? []),
+        networks = List<NetworkModel>.from(
+            json["networks"]?.map((x) => NetworkModel.fromJson(x)) ?? []),
         numberOfEpisodes = json['number_of_episodes'],
         numberOfSeasons = json['number_of_seasons'],
         originCountry = List<String>.from(json['origin_country'] ?? []),
@@ -107,9 +107,9 @@ class TvSeriesDetailModel extends Equatable {
         overview = json['overview'],
         popularity = json['popularity']?.toDouble(),
         posterPath = json['poster_path'],
-        productionCompanies = List<ProductCompanyModel>.from(
+        productionCompanies = List<ProductionCompanyModel>.from(
             json["production_companies"]
-                    ?.map((x) => ProductCompanyModel.fromJson(x)) ??
+                    ?.map((x) => ProductionCompanyModel.fromJson(x)) ??
                 []),
         productionCountries = List<ProductionCountryModel>.from(
             json["production_countries"]
@@ -175,7 +175,7 @@ class TvSeriesDetailModel extends Equatable {
       firstAirDate: firstAirDate ?? "",
       genres: genres?.map((genre) => genre.toEntity()).toList() ?? [],
       homepage: homepage,
-      id: id ?? 0,
+      id: id,
       inProduction: inProduction ?? false,
       languages: languages ?? [],
       lastAirDate: lastAirDate ?? "",
@@ -190,7 +190,7 @@ class TvSeriesDetailModel extends Equatable {
       originalName: originalName ?? "",
       overview: overview ?? "",
       popularity: popularity ?? 0.0,
-      posterPath: posterPath ?? "",
+      posterPath: posterPath,
       productionCompanies:
           productionCompanies?.map((company) => company.toEntity()).toList() ??
               [],
@@ -209,6 +209,7 @@ class TvSeriesDetailModel extends Equatable {
     );
   }
 
+  @override
   List<Object?> get props => [
         adult,
         backdropPath,

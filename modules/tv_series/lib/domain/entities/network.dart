@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-class Networks extends Equatable {
+class Network extends Equatable {
   final int id;
   final String? logoPath;
   final String name;
   final String originCountry;
 
-  Networks({
+  const Network({
     required this.id,
     this.logoPath,
     required this.name,

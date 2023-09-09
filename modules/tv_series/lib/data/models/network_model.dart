@@ -1,21 +1,21 @@
-import 'package:tv_series/domain/entities/networks.dart';
+import 'package:tv_series/domain/entities/network.dart';
 import 'package:equatable/equatable.dart';
 
-class NetworksModel extends Equatable {
+class NetworkModel extends Equatable {
   final int id;
   final String? logoPath;
   final String name;
   final String originCountry;
 
-  NetworksModel({
+  const NetworkModel({
     required this.id,
     this.logoPath,
     required this.name,
     required this.originCountry,
   });
 
-  factory NetworksModel.fromJson(Map<String, dynamic> json) {
-    return NetworksModel(
+  factory NetworkModel.fromJson(Map<String, dynamic> json) {
+    return NetworkModel(
       id: json['id'],
       logoPath: json['logo_path'],
       name: json['name'],
@@ -32,8 +32,8 @@ class NetworksModel extends Equatable {
     };
   }
 
-  Networks toEntity() {
-    return Networks(
+  Network toEntity() {
+    return Network(
       id: id,
       logoPath: logoPath,
       name: name,

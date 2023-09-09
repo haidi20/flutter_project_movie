@@ -5,8 +5,8 @@ import 'package:tv_series/data/models/season_detail_model.dart';
 import 'package:tv_series/data/models/tv_series_detail_model.dart';
 import 'package:tv_series/data/models/tv_series_model.dart';
 import 'package:tv_series/data/models/tv_series_response.dart';
-import 'package:tv_series/data/models/tv_series_season_response.dart';
 import 'package:http/http.dart' as http;
+import 'package:tv_series/data/models/tv_series_season_detail_response.dart';
 
 abstract class TvSeriesRemoteDataSource {
   Future<List<TvSeriesModel>> getAiringToday();
@@ -20,7 +20,7 @@ abstract class TvSeriesRemoteDataSource {
 }
 
 class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
-  static const apiKey = 'api_key=2174d146bb9c0eab47529b2e77d6b526';
+  static const apiKey = 'api_key=bfc228e757fb368b3ddd4bb9609def19';
   static const baseUrl = 'https://api.themoviedb.org/3';
 
   final http.Client client;
@@ -34,7 +34,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
 
     if (response.statusCode == 200) {
       List<TvSeriesModel> getData =
-          TvSeriesResponse.fromJson(json.decode(response.body)).TvSeriesList;
+          TvSeriesResponse.fromJson(json.decode(response.body)).tvSeriesList;
 
       return getData;
 
@@ -50,7 +50,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
 
     if (response.statusCode == 200) {
       List<TvSeriesModel> getData =
-          TvSeriesResponse.fromJson(json.decode(response.body)).TvSeriesList;
+          TvSeriesResponse.fromJson(json.decode(response.body)).tvSeriesList;
 
       return getData;
 
@@ -67,7 +67,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
 
     if (response.statusCode == 200) {
       List<TvSeriesModel> getData =
-          TvSeriesResponse.fromJson(json.decode(response.body)).TvSeriesList;
+          TvSeriesResponse.fromJson(json.decode(response.body)).tvSeriesList;
 
       return getData;
 
@@ -85,7 +85,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
 
     if (response.statusCode == 200) {
       SeasonDetailModel getData =
-          TvSeriesSeasonResponse.fromJson(json.decode(response.body))
+          TvSeriesSeasonDetailResponse.fromJson(json.decode(response.body))
               .seasonDetail;
 
       return getData;
@@ -102,13 +102,31 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
 
     if (response.statusCode == 200) {
       List<TvSeriesModel> getData =
-          TvSeriesResponse.fromJson(json.decode(response.body)).TvSeriesList;
+          TvSeriesResponse.fromJson(json.decode(response.body)).tvSeriesList;
 
       return getData;
+
+      // return result;
     } else {
       throw ServerException();
     }
   }
+
+  // @override
+  // Future<List<TvSeriesModel>> getTvSeriesRecommendation(
+  //     {required int id}) async {
+  //   final response =
+  //       await client.get(Uri.parse('$baseUrl/tv/$id/recommendations?$apiKey'));
+
+  //   if (response.statusCode == 200) {
+  //     List<TvSeriesModel> getData =
+  //         TvSeriesResponse.fromJson(json.decode(response.body)).tvSeriesList;
+
+  //     return getData;
+  //   } else {
+  //     throw ServerException();
+  //   }
+  // }
 
   @override
   Future<TvSeriesDetailModel> getTvSeriesDetail({required int id}) async {
@@ -127,7 +145,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
         await client.get(Uri.parse('$baseUrl/search/tv?$apiKey&query=$query'));
 
     if (response.statusCode == 200) {
-      return TvSeriesResponse.fromJson(json.decode(response.body)).TvSeriesList;
+      return TvSeriesResponse.fromJson(json.decode(response.body)).tvSeriesList;
     } else {
       throw ServerException();
     }

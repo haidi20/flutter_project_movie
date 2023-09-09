@@ -41,10 +41,10 @@ class SeasonDataLoaded extends TvSeriesState {
   List<Object> get props => [result];
 }
 
-class SeasinDetailLoaded extends TvSeriesState {
+class SeasonDetailLoaded extends TvSeriesState {
   final SeasonDetail result;
 
-  const SeasinDetailLoaded(this.result);
+  const SeasonDetailLoaded(this.result);
 
   @override
   List<Object> get props => [result];

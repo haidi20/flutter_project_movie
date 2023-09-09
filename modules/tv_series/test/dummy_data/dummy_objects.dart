@@ -1,8 +1,8 @@
 import 'package:core/domain/entities/genre.dart';
 import 'package:tv_series/data/models/tv_series_table.dart';
 import 'package:tv_series/domain/entities/episod_to_air.dart';
-import 'package:tv_series/domain/entities/networks.dart';
-import 'package:tv_series/domain/entities/product_company.dart';
+import 'package:tv_series/domain/entities/network.dart';
+import 'package:tv_series/domain/entities/production_company.dart';
 import 'package:tv_series/domain/entities/production_country.dart';
 import 'package:tv_series/domain/entities/season.dart';
 import 'package:tv_series/domain/entities/spoken_language.dart';
@@ -45,7 +45,7 @@ const testTvSeries = TvSeries(
   voteCount: 127,
 );
 
-final List<TvSeries> tvSeriesList = [testTvSeries];
+final List<TvSeries> testTvSeriesList = [testTvSeries];
 
 final testTvSeriesCacheMap = {
   'id': 94722,
@@ -119,8 +119,8 @@ final testTvSeriesDetail = TvSeriesDetail(
     showId: 94722,
     stillPath: null,
   ),
-  networks: [
-    Networks(
+  networks: const [
+    Network(
       id: 308,
       logoPath: "/fc0O0mvjl8PbHgZXXY2VgPYos1Z.png",
       name: "ARD",
@@ -136,8 +136,8 @@ final testTvSeriesDetail = TvSeriesDetail(
       "German daily news program, the oldest still existing program on German television.",
   popularity: 5104.121,
   posterPath: "/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg",
-  productionCompanies: [
-    ProductCompany(
+  productionCompanies: const [
+    ProductionCompany(
       id: 7201,
       logoPath: "/ljV8ZT3CIYCEIEDlTyBliXJVCZr.png",
       name: "NDR",
@@ -150,7 +150,7 @@ final testTvSeriesDetail = TvSeriesDetail(
       name: "Germany",
     ),
   ],
-  seasons: [
+  seasons: const [
     Season(
       airDate: "1952-12-26",
       episodeCount: 6,
@@ -175,4 +175,19 @@ final testTvSeriesDetail = TvSeriesDetail(
   voteAverage: 7.531,
   voteCount: 127,
 );
+
+const testSeason = Season(
+  airDate: "1952-12-26",
+  episodeCount:
+      1, // Derived from the length of the episodes array in the provided JSON
+  id: 134441,
+  name: "Season 1952",
+  overview: "",
+  seasonNumber: 1,
+  voteAverage: 3.5,
+);
+
+final testSeasonList = [testSeason];
+
+
 // end tv series

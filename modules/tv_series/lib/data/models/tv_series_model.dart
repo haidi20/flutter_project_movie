@@ -3,19 +3,19 @@ import 'package:equatable/equatable.dart';
 
 class TvSeriesModel extends Equatable {
   const TvSeriesModel({
-    required this.backdropPath,
-    required this.firstAirDate,
+    this.backdropPath,
+    this.firstAirDate,
     required this.genreIds,
     required this.id,
-    required this.name,
-    required this.originCountry,
-    required this.originalLanguage,
-    required this.originalName,
+    this.name,
+    this.originCountry,
+    this.originalLanguage,
+    this.originalName,
     required this.overview,
-    required this.popularity,
+    this.popularity,
     required this.posterPath,
-    required this.voteAverage,
-    required this.voteCount,
+    this.voteAverage,
+    this.voteCount,
   });
 
   final String? backdropPath;
@@ -28,7 +28,7 @@ class TvSeriesModel extends Equatable {
   final String? originalName;
   final String overview;
   final double? popularity;
-  final String? posterPath;
+  final String posterPath;
   final double? voteAverage;
   final int? voteCount;
 
@@ -72,19 +72,19 @@ class TvSeriesModel extends Equatable {
   // Assuming there's another entity class named TvSeries for toEntity()
   TvSeries toEntity() {
     return TvSeries(
-      backdropPath: this.backdropPath,
-      firstAirDate: this.firstAirDate,
-      genreIds: this.genreIds,
-      id: this.id,
-      name: this.name,
-      originCountry: this.originCountry,
-      originalLanguage: this.originalLanguage,
-      originalName: this.originalName,
-      overview: this.overview,
-      popularity: this.popularity,
-      posterPath: this.posterPath,
-      voteAverage: this.voteAverage,
-      voteCount: this.voteCount,
+      backdropPath: backdropPath,
+      firstAirDate: firstAirDate,
+      genreIds: genreIds,
+      id: id,
+      name: name,
+      originCountry: originCountry,
+      originalLanguage: originalLanguage,
+      originalName: originalName,
+      overview: overview,
+      popularity: popularity,
+      posterPath: posterPath,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
     );
   }
 

@@ -1,7 +1,7 @@
 import 'package:core/domain/entities/genre.dart';
 import 'package:tv_series/domain/entities/episod_to_air.dart';
-import 'package:tv_series/domain/entities/networks.dart';
-import 'package:tv_series/domain/entities/product_company.dart';
+import 'package:tv_series/domain/entities/network.dart';
+import 'package:tv_series/domain/entities/production_company.dart';
 import 'package:tv_series/domain/entities/production_country.dart';
 import 'package:tv_series/domain/entities/season.dart';
 import 'package:tv_series/domain/entities/spoken_language.dart';
@@ -17,14 +17,14 @@ class TvSeriesDetail extends Equatable {
   final String? firstAirDate;
   final List<Genre>? genres;
   final String? homepage;
-  final int? id;
+  final int id;
   final bool? inProduction;
   final List<String>? languages;
   final String? lastAirDate;
   final EpisodeToAir? lastEpisodeToAir;
   final String? name;
   final EpisodeToAir? nextEpisodeToAir;
-  final List<Networks>? networks;
+  final List<Network>? networks;
   final int? numberOfEpisodes;
   final int? numberOfSeasons;
   final List<String>? originCountry;
@@ -32,8 +32,8 @@ class TvSeriesDetail extends Equatable {
   final String? originalName;
   final String? overview;
   final double? popularity;
-  final String? posterPath;
-  final List<ProductCompany>? productionCompanies;
+  final String posterPath;
+  final List<ProductionCompany>? productionCompanies;
   final List<ProductionCountry>? productionCountries;
   final List<Season>? seasons;
   final List<SpokenLanguage>? spokenLanguages;
@@ -51,7 +51,7 @@ class TvSeriesDetail extends Equatable {
     this.firstAirDate,
     this.genres,
     this.homepage,
-    this.id,
+    required this.id,
     this.inProduction,
     this.languages,
     this.lastAirDate,
@@ -66,7 +66,7 @@ class TvSeriesDetail extends Equatable {
     this.originalName,
     this.overview,
     this.popularity,
-    this.posterPath,
+    required this.posterPath,
     this.productionCompanies,
     this.productionCountries,
     this.seasons,

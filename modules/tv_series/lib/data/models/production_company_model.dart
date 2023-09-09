@@ -1,22 +1,22 @@
-import 'package:tv_series/domain/entities/product_company.dart';
+import 'package:tv_series/domain/entities/production_company.dart';
 import 'package:equatable/equatable.dart';
 
-class ProductCompanyModel extends Equatable {
+class ProductionCompanyModel extends Equatable {
   final int id;
   final String? logoPath;
   final String name;
   final String originCountry;
 
-  ProductCompanyModel({
+  const ProductionCompanyModel({
     required this.id,
     this.logoPath,
     required this.name,
     required this.originCountry,
   });
 
-  // Convert a JSON object into a ProductCompanyModel
-  factory ProductCompanyModel.fromJson(Map<String, dynamic> json) {
-    return ProductCompanyModel(
+  // Convert a JSON object into a ProductionCompanyModel
+  factory ProductionCompanyModel.fromJson(Map<String, dynamic> json) {
+    return ProductionCompanyModel(
       id: json['id'],
       logoPath: json['logo_path'],
       name: json['name'],
@@ -24,7 +24,7 @@ class ProductCompanyModel extends Equatable {
     );
   }
 
-  // Convert a ProductCompanyModel into a JSON object
+  // Convert a ProductionCompanyModel into a JSON object
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -34,9 +34,9 @@ class ProductCompanyModel extends Equatable {
     };
   }
 
-  // Convert a ProductCompanyModel into a ProductCompany entity
-  ProductCompany toEntity() {
-    return ProductCompany(
+  // Convert a ProductionCompanyModel into a ProductCompany entity
+  ProductionCompany toEntity() {
+    return ProductionCompany(
       id: id,
       logoPath: logoPath,
       name: name,

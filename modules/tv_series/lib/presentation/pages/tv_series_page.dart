@@ -69,23 +69,16 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
 
                     return TvSeriesList(airingTodays);
                   } else if (state is Empty) {
-                    return const Expanded(
-                      child: Center(
-                        child: Text("data tidak ada"),
-                      ),
+                    return const Center(
+                      child: Text("data tidak ada"),
                     );
                   } else if (state is Error) {
-                    return Expanded(
-                      child: Center(
-                        child: Text(state.message),
-                      ),
+                    return Center(
+                      key: const Key('error_message'),
+                      child: Text(state.message),
                     );
                   } else {
-                    return const Expanded(
-                      child: Center(
-                        child: Text("else"),
-                      ),
-                    );
+                    return Container();
                   }
                 },
               ),
@@ -105,23 +98,16 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
 
                     return TvSeriesList(populars);
                   } else if (state is Empty) {
-                    return const Expanded(
-                      child: Center(
-                        child: Text("data tidak ada"),
-                      ),
+                    return const Center(
+                      child: Text("data tidak ada"),
                     );
                   } else if (state is Error) {
-                    return Expanded(
-                      child: Center(
-                        child: Text(state.message),
-                      ),
+                    return Center(
+                      key: const Key('error_message'),
+                      child: Text(state.message),
                     );
                   } else {
-                    return const Expanded(
-                      child: Center(
-                        child: Text("else"),
-                      ),
-                    );
+                    return Container();
                   }
                 },
               ),
@@ -141,23 +127,16 @@ class _TvSeriesPageState extends State<TvSeriesPage> {
 
                     return TvSeriesList(topRateds);
                   } else if (state is Empty) {
-                    return const Expanded(
-                      child: Center(
-                        child: Text("data tidak ada"),
-                      ),
+                    return const Center(
+                      child: Text("data tidak ada"),
                     );
                   } else if (state is Error) {
-                    return Expanded(
-                      child: Center(
-                        child: Text(state.message),
-                      ),
+                    return Center(
+                      key: const Key('error_message'),
+                      child: Text(state.message),
                     );
                   } else {
-                    return const Expanded(
-                      child: Center(
-                        child: Text("else"),
-                      ),
-                    );
+                    return Container();
                   }
                 },
               ),

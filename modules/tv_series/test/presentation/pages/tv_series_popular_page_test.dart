@@ -59,7 +59,8 @@ void main() {
 
     testWidgets('page should display ListView when data is loaded',
         (WidgetTester tester) async {
-      when(() => mockPopularBloc.state).thenReturn(DataLoaded(tvSeriesList));
+      when(() => mockPopularBloc.state)
+          .thenReturn(DataLoaded(testTvSeriesList));
 
       await tester.pumpWidget(makeTestableWidget(const TvSeriesPopularPage()));
 

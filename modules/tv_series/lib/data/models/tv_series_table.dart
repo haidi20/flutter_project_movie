@@ -4,15 +4,15 @@ import 'package:tv_series/domain/entities/tv_series_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeriesTable extends Equatable {
-  final int? id;
+  final int id;
   final String? name;
-  final String? posterPath;
+  final String posterPath;
   final String? overview;
 
   const TvSeriesTable({
     required this.id,
     this.name,
-    this.posterPath,
+    required this.posterPath,
     this.overview,
   });
 

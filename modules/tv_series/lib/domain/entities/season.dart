@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
+@immutable
 class Season extends Equatable {
   final String airDate;
   final int episodeCount;
@@ -10,7 +12,7 @@ class Season extends Equatable {
   final int seasonNumber;
   final double voteAverage;
 
-  Season({
+  const Season({
     required this.airDate,
     required this.episodeCount,
     required this.id,

@@ -36,11 +36,8 @@ class TvSeriesDetailBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
       (failure) {
         emit(Error(failure.message));
       },
-      (tvSeriesDetail) {
-        emit(DataDetailLoaded(
-          tvSeriesDetail,
-          tvSeriesDetail.seasons ?? [],
-        ));
+      (movieDetail) {
+        emit(DataDetailLoaded(movieDetail, movieDetail.seasons ?? []));
       },
     );
   }
@@ -64,12 +61,8 @@ class TvSeriesRecommendationBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
       (failure) {
         emit(Error(failure.message));
       },
-      (tvSeriesRecommendations) {
-        if (tvSeriesRecommendations.isEmpty) {
-          emit(Empty());
-        } else {
-          emit(DataLoaded(tvSeriesRecommendations));
-        }
+      (recommendations) {
+        emit(DataLoaded(recommendations));
       },
     );
   }
@@ -95,7 +88,7 @@ class TvSeriesSeasonBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
         emit(Error(failure.message));
       },
       (tvSeriesSeasonDetail) {
-        emit(SeasinDetailLoaded(tvSeriesSeasonDetail));
+        emit(SeasonDetailLoaded(tvSeriesSeasonDetail));
       },
     );
   }

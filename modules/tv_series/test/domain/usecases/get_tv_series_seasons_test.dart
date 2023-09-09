@@ -15,18 +15,18 @@ void main() {
     usecase = GetTvSeriesSeason(mockTvSeriesRepository);
   });
 
-  final tId = 1;
-  final tSeasonNumber = 1;
-  final tTvSeriesSeason = SeasonDetail(episodes: []);
+  const tId = 1;
+  const tSeasonNumber = 1;
+  const tTvSeriesSeason = SeasonDetail(episodes: []);
 
   test('should get list of tv series seasons from the repository', () async {
     // arrange
     when(mockTvSeriesRepository.getTvSeriesSeason(
             id: tId, seasonNumber: tSeasonNumber))
-        .thenAnswer((_) async => Right(tTvSeriesSeason));
+        .thenAnswer((_) async => const Right(tTvSeriesSeason));
     // act
     final result = await usecase.execute(tId, tSeasonNumber);
     // assert
-    expect(result, Right(tTvSeriesSeason));
+    expect(result, const Right(tTvSeriesSeason));
   });
 }

@@ -12,7 +12,7 @@ import '../../json_reader.dart';
 import '../../helpers/test_helper.mocks.dart';
 
 void main() {
-  const apiKey = 'api_key=2174d146bb9c0eab47529b2e77d6b526';
+  const apiKey = 'api_key=bfc228e757fb368b3ddd4bb9609def19';
   const baseUrl = 'https://api.themoviedb.org/3';
 
   late TvSeriesRemoteDataSourceImpl dataSource;
@@ -26,7 +26,7 @@ void main() {
   group('get Airing Today Tv Series', () {
     final tTvSeriesList = TvSeriesResponse.fromJson(
             json.decode(readJson('dummy_data/tv_series_airing_today.json')))
-        .TvSeriesList;
+        .tvSeriesList;
 
     test('should return list of Tv Series Model when the response code is 200',
         () async {
@@ -60,7 +60,7 @@ void main() {
   group('get Popular Tv Series', () {
     final tTvSeriesListPopular = TvSeriesResponse.fromJson(
             json.decode(readJson('dummy_data/tv_series_popular.json')))
-        .TvSeriesList;
+        .tvSeriesList;
 
     test('should return list of Tv Series when response is success (200)',
         () async {
@@ -94,7 +94,7 @@ void main() {
   group('get Top Rated Movies', () {
     final tTvSeriesListTopRated = TvSeriesResponse.fromJson(
             json.decode(readJson('dummy_data/tv_series_top_rated.json')))
-        .TvSeriesList;
+        .tvSeriesList;
 
     test('should return list of movies when response code is 200 ', () async {
       // arrange
@@ -153,7 +153,7 @@ void main() {
   group('search Tv Series', () {
     final tSearchResult = TvSeriesResponse.fromJson(json
             .decode(readJson('dummy_data/tv_series_search_tagesschau.json')))
-        .TvSeriesList;
+        .tvSeriesList;
     const tQuery = 'Tagesschau';
 
     test('should return list of Tv Series when response code is 200', () async {

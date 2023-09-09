@@ -3,7 +3,7 @@ import 'package:tv_series/domain/entities/tv_series.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tTvSeriesModel = TvSeriesModel(
+  const tTvSeriesModel = TvSeriesModel(
     backdropPath: 'path/to/backdrop.jpg',
     firstAirDate: '2023-08-23',
     genreIds: [1, 2, 3],
@@ -19,7 +19,7 @@ void main() {
     voteCount: 1000,
   );
 
-  final tTvSeries = TvSeries(
+  const tTvSeries = TvSeries(
     backdropPath: 'path/to/backdrop.jpg',
     firstAirDate: '2023-08-23',
     genreIds: [1, 2, 3],

@@ -1,13 +1,13 @@
 import 'package:tv_series/data/models/season_detail_model.dart';
 import 'package:equatable/equatable.dart';
 
-class TvSeriesSeasonResponse extends Equatable {
+class TvSeriesSeasonDetailResponse extends Equatable {
   final SeasonDetailModel seasonDetail;
 
-  TvSeriesSeasonResponse({required this.seasonDetail});
+  const TvSeriesSeasonDetailResponse({required this.seasonDetail});
 
-  factory TvSeriesSeasonResponse.fromJson(Map<String, dynamic> json) =>
-      TvSeriesSeasonResponse(
+  factory TvSeriesSeasonDetailResponse.fromJson(Map<String, dynamic> json) =>
+      TvSeriesSeasonDetailResponse(
         seasonDetail: SeasonDetailModel.fromJson(json),
       );
 

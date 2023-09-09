@@ -128,6 +128,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<TvSeriesWatchListBloc>(),
         ),
+        BlocProvider(
+          create: (_) => di.locator<TvSeriesRecommendationBloc>(),
+        ),
+        BlocProvider(
+          create: (_) => di.locator<TvSeriesSeasonBloc>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -139,7 +145,7 @@ class MyApp extends StatelessWidget {
         ),
         home: HomeMoviePage(),
         navigatorObservers: [routeObserver],
-        initialRoute: TvSeriesWatchListPage.routeName,
+        // initialRoute: TvSeriesWatchListPage.routeName,
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case '/home':

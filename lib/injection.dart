@@ -229,7 +229,6 @@ void init() {
   locator.registerFactory(
     () => TvSeriesDetailBloc(
       locator(),
-      locator(),
     ),
   );
   locator.registerFactory(
@@ -252,6 +251,16 @@ void init() {
       locator(),
       locator(),
       locator(),
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvSeriesRecommendationBloc(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TvSeriesSeasonBloc(
       locator(),
     ),
   );

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:tv_series/data/models/episod_model.dart';
 import 'package:tv_series/data/models/season_detail_model.dart';
-import 'package:tv_series/data/models/tv_series_season_response.dart';
+import 'package:tv_series/data/models/tv_series_season_detail_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../json_reader.dart';
@@ -32,14 +32,14 @@ void main() {
         stillPath: null,
         voteAverage: 1.0,
         voteCount: 2,
-        crew: [],
-        guestStars: [],
+        crew: const [],
+        guestStars: const [],
       ),
     ],
   );
 
-  final tTvSeriesSeasonResponseModel =
-      TvSeriesSeasonResponse(seasonDetail: tTvSeriesSeasonDetail);
+  final tTvSeriesSeasonDetailResponseModel =
+      TvSeriesSeasonDetailResponse(seasonDetail: tTvSeriesSeasonDetail);
 
   group('fromJson', () {
     test('should return a valid model from JSON', () async {
@@ -47,9 +47,9 @@ void main() {
       final Map<String, dynamic> jsonMap =
           json.decode(readJson('dummy_data/tv_series_seasons.json'));
       // act
-      final result = TvSeriesSeasonResponse.fromJson(jsonMap);
+      final result = TvSeriesSeasonDetailResponse.fromJson(jsonMap);
       // assert
-      expect(result, tTvSeriesSeasonResponseModel);
+      expect(result, tTvSeriesSeasonDetailResponseModel);
     });
   });
 
@@ -58,7 +58,7 @@ void main() {
       // arrange
 
       // act
-      final result = tTvSeriesSeasonResponseModel.toJson();
+      final result = tTvSeriesSeasonDetailResponseModel.toJson();
       // assert
       final expectedJsonMap = {
         "_id": "5dac967fed28b90014dbbc04",
