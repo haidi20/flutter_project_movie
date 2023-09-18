@@ -1,5 +1,4 @@
 import 'package:core/core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_bloc.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
