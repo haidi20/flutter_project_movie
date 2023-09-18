@@ -15,6 +15,6 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-![Screenshot](assets/images/screenshot.png)
+![Screenshot](assets/ci-build.png)
 
 [![Codemagic build status](https://api.codemagic.io/apps/64f3190ce8fcfbf58cc29d1b/64f3190ce8fcfbf58cc29d1a/status_badge.svg)](https://codemagic.io/apps/64f3190ce8fcfbf58cc29d1b/64f3190ce8fcfbf58cc29d1a/latest_build)
