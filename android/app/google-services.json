@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "599514547596",
+    "project_id": "endless-orb-206506",
+    "storage_bucket": "endless-orb-206506.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:599514547596:android:6d60ae2d0e31b86b1042a9",
+        "android_client_info": {
+          "package_name": "com.dicoding.a199_flutter_expert_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "599514547596-khbtr5su7tilqt30hp19u780evn4i3dn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxgT5ApBVF5bZ6QzM_ehDJx-q2g3L930Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "599514547596-khbtr5su7tilqt30hp19u780evn4i3dn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

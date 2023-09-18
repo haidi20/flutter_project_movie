@@ -1,4 +1,5 @@
 import 'package:core/core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/presentation/bloc/search_bloc.dart';
 import 'package:movie/presentation/widgets/movie_card_list.dart';
@@ -32,6 +33,13 @@ class SearchPage extends StatelessWidget {
               ),
               textInputAction: TextInputAction.search,
             ),
+            // IconButton(
+            //   onPressed: () {
+            //     FirebaseCrashlytics.instance.crash();
+            //     // Navigator.pushNamed(context, );
+            //   },
+            //   icon: const Icon(Icons.search),
+            // ),
             const SizedBox(height: 16),
             Text(
               'Search Result',

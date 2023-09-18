@@ -1,19 +1,27 @@
 buildscript {
     ext.kotlin_version = '1.7.10'
     repositories {
-        google()
+        // Periksa apakah sudah menyertakan Maven Google atau tidak.
+        google()  // Google's Maven repository
         mavenCentral()
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.0'
+        // START: FlutterFire Configuration
+        // classpath 'com.google.gms:google-services:4.3.10'
+        // END: FlutterFire Configuration
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+         // Tambahkan baris di bawah ini.
+        classpath 'com.google.gms:google-services:4.3.13'  // Google Services plugin
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
     }
 }
 
 allprojects {
     repositories {
-        google()
+        // Periksa apakah sudah menyertakan Maven Google atau tidak.
+        google()  // Google's Maven repository
         mavenCentral()
     }
 }

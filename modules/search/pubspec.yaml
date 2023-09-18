@@ -23,6 +23,7 @@ dependencies:
   tv_series:
     path: ../tv_series
   http: ^1.1.0
+  firebase_crashlytics: ^3.3.5
 
 dev_dependencies:
   flutter_test:

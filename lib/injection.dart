@@ -1,3 +1,4 @@
+import 'package:core/data/datasources/api/api_helper.dart';
 import 'package:movie/data/datasources/db/movie_database_helper.dart';
 import 'package:movie/presentation/bloc/movie_bloc.dart';
 import 'package:movie/presentation/provider/movie_list_notifier.dart';
@@ -155,7 +156,7 @@ void init() {
 
   // data sources
   locator.registerLazySingleton<MovieRemoteDataSource>(
-      () => MovieRemoteDataSourceImpl(client: locator()));
+      () => MovieRemoteDataSourceImpl(apiHelper: locator()));
   locator.registerLazySingleton<MovieLocalDataSource>(
       () => MovieLocalDataSourceImpl(databaseHelper: locator()));
 
@@ -168,6 +169,7 @@ void init() {
 
   // external
   locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton<ApiHelper>(() => ApiHelper());
   locator.registerLazySingleton(() => DataConnectionChecker());
 
   // start TV SERIES
@@ -289,7 +291,7 @@ void init() {
 
   // data sources
   locator.registerLazySingleton<TvSeriesRemoteDataSource>(
-      () => TvSeriesRemoteDataSourceImpl(client: locator()));
+      () => TvSeriesRemoteDataSourceImpl(apiHelper: locator()));
   locator.registerLazySingleton<TvSeriesLocalDataSource>(
       () => TvSeriesLocalDataSourceImpl(databaseHelper: locator()));
 

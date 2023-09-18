@@ -13,6 +13,6 @@ import 'package:http/http.dart' as http;
   MovieLocalDataSource,
   NetworkInfo,
 ], customMocks: [
-  MockSpec<http.Client>(as: #MockHttpClient)
+  MockSpec<http.Client>(as: #MockHttpClient),
 ])
 void main() {}

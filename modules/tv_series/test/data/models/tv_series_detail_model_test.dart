@@ -80,10 +80,11 @@ void main() {
     posterPath: "/7dFZJ2ZJJdcmkp05B9NWlqTJ5tq.jpg",
     productionCompanies: const [
       ProductionCompanyModel(
-          id: 7201,
-          logoPath: "/ljV8ZT3CIYCEIEDlTyBliXJVCZr.png",
-          name: "NDR",
-          originCountry: "DE")
+        id: 7201,
+        logoPath: "/ljV8ZT3CIYCEIEDlTyBliXJVCZr.png",
+        name: "NDR",
+        originCountry: "DE",
+      )
     ],
     productionCountries: const [
       ProductionCountryModel(iso31661: "DE", name: "Germany")
@@ -178,7 +179,12 @@ void main() {
           name: "NDR",
           originCountry: "DE")
     ],
-    productionCountries: [ProductionCountry(iso31661: "DE", name: "Germany")],
+    productionCountries: [
+      ProductionCountry(
+        iso31661: "DE",
+        name: "Germany",
+      ),
+    ],
     seasons: const [
       Season(
         airDate: "1952-12-26",
@@ -201,8 +207,42 @@ void main() {
     voteCount: 127,
   );
 
-  test('should be a subclass of Tv Series entity', () async {
+  const productionCompanyModel = ProductionCompanyModel(
+    id: 7201,
+    logoPath: "/ljV8ZT3CIYCEIEDlTyBliXJVCZr.png",
+    name: "NDR",
+    originCountry: "DE",
+  );
+  const productionCompany = ProductionCompany(
+    id: 7201,
+    logoPath: "/ljV8ZT3CIYCEIEDlTyBliXJVCZr.png",
+    name: "NDR",
+    originCountry: "DE",
+  );
+
+  final productionCountryModel = ProductionCountryModel(
+    iso31661: "DE",
+    name: "Germany",
+  );
+  final productionCountry = ProductionCountry(
+    iso31661: "DE",
+    name: "Germany",
+  );
+
+  test('should be a subclass of Tv Series detail entity', () async {
     final result = tTvSeriesDetailModel.toEntity();
     expect(result, tTvSeriesDetail);
+  });
+
+  test('should be a subclass of Tv Series detail production company entity',
+      () async {
+    final result = productionCompanyModel.toEntity();
+    expect(result, productionCompany);
+  });
+
+  test('should be a subclass of Tv Series detail production country entity',
+      () async {
+    final result = productionCountryModel.toEntity();
+    expect(result, productionCountry);
   });
 }

@@ -29,6 +29,7 @@ dependencies:
     path: ../modules/movie
   tv_series:
     path: ../modules/tv_series
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

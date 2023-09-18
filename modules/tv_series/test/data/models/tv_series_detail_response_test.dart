@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:tv_series/data/models/tv_series_detail_response.dart';
-import 'package:tv_series/data/models/tv_series_response.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:core/data/models/genre_model.dart';
 import 'package:tv_series/data/models/episod_to_air_model.dart';

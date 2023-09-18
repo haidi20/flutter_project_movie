@@ -51,13 +51,8 @@ class _TvSeriesWatchListPageState extends State<TvSeriesWatchListPage>
               final watchLists = state.result;
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  return ListView.builder(
-                    itemBuilder: (context, index) {
-                      final watchList = watchLists[index];
-                      return TvSeriesCard(watchList);
-                    },
-                    itemCount: watchLists.length,
-                  );
+                  final watchList = watchLists[index];
+                  return TvSeriesCard(watchList);
                 },
                 itemCount: watchLists.length,
               );
