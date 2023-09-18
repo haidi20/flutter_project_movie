@@ -10,7 +10,7 @@ import 'package:tv_series/domain/usecases/get_tv_series_popular.dart';
 import 'package:tv_series/domain/usecases/get_tv_series_recommendations.dart';
 import 'package:tv_series/domain/usecases/get_tv_series_seasons.dart';
 import 'package:tv_series/domain/usecases/get_tv_series_top_rated.dart';
-import 'package:tv_series/domain/usecases/get_tv_series_watchist_status.dart';
+import 'package:tv_series/domain/usecases/get_tv_series_watchlist_status.dart';
 import 'package:tv_series/domain/usecases/get_tv_series_watchlist.dart';
 import 'package:tv_series/domain/usecases/remove_tv_series_watchlist.dart';
 import 'package:tv_series/domain/usecases/save_tv_series_watchlist.dart';

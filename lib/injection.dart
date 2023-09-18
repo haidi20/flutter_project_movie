@@ -24,7 +24,7 @@ import 'package:tv_series/domain/usecases/get_tv_series_popular.dart';
 import 'package:tv_series/domain/usecases/get_tv_series_recommendations.dart';
 import 'package:tv_series/domain/usecases/get_tv_series_seasons.dart';
 import 'package:tv_series/domain/usecases/get_tv_series_top_rated.dart';
-import 'package:tv_series/domain/usecases/get_tv_series_watchist_status.dart';
+import 'package:tv_series/domain/usecases/get_tv_series_watchlist_status.dart';
 import 'package:tv_series/domain/usecases/get_tv_series_watchlist.dart';
 import 'package:movie/domain/usecases/get_watchlist_movies.dart';
 import 'package:movie/domain/usecases/get_watchlist_status.dart';
