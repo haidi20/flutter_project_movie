@@ -47,7 +47,7 @@ class _TvSeriesWatchListPageState extends State<TvSeriesWatchListPage>
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is DataLoaded) {
+            } else if (state is WatchListDataLoaded) {
               final watchLists = state.result;
               return ListView.builder(
                 itemBuilder: (context, index) {

@@ -4,18 +4,14 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:tv_series/domain/entities/tv_series.dart';
-import 'package:tv_series/domain/usecases/get_tv_series_airing_today.dart';
-import 'package:tv_series/domain/usecases/get_tv_series_detail.dart';
-import 'package:tv_series/domain/usecases/get_tv_series_top_rated.dart';
-import 'package:tv_series/presentation/bloc/tv_series_bloc.dart';
+import 'package:tv_series/tv_series.dart';
 
-import '../provider/tv_series_popular_notifier_test.mocks.dart';
 import 'tv_series_bloc_test.mocks.dart';
 
 @GenerateMocks([
   GetTvSeriesAiringToday,
   GetTvSeriesDetail,
+  GetTvSeriesPopular,
   GetTvSeriesTopRated,
 ])
 void main() {

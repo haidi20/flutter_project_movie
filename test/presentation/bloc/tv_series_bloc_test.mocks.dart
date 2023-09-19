@@ -14,7 +14,8 @@ import 'package:tv_series/domain/repositories/tv_series_repository.dart' as _i2;
 import 'package:tv_series/domain/usecases/get_tv_series_airing_today.dart'
     as _i4;
 import 'package:tv_series/domain/usecases/get_tv_series_detail.dart' as _i8;
-import 'package:tv_series/domain/usecases/get_tv_series_top_rated.dart' as _i10;
+import 'package:tv_series/domain/usecases/get_tv_series_popular.dart' as _i10;
+import 'package:tv_series/domain/usecases/get_tv_series_top_rated.dart' as _i11;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -119,11 +120,47 @@ class MockGetTvSeriesDetail extends _i1.Mock implements _i8.GetTvSeriesDetail {
       ) as _i5.Future<_i3.Either<_i6.Failure, _i9.TvSeriesDetail>>);
 }
 
+/// A class which mocks [GetTvSeriesPopular].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetTvSeriesPopular extends _i1.Mock
+    implements _i10.GetTvSeriesPopular {
+  MockGetTvSeriesPopular() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.TvSeriesRepository get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeTvSeriesRepository_0(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i2.TvSeriesRepository);
+  @override
+  _i5.Future<_i3.Either<_i6.Failure, List<_i7.TvSeries>>> execute() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #execute,
+          [],
+        ),
+        returnValue:
+            _i5.Future<_i3.Either<_i6.Failure, List<_i7.TvSeries>>>.value(
+                _FakeEither_1<_i6.Failure, List<_i7.TvSeries>>(
+          this,
+          Invocation.method(
+            #execute,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i3.Either<_i6.Failure, List<_i7.TvSeries>>>);
+}
+
 /// A class which mocks [GetTvSeriesTopRated].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetTvSeriesTopRated extends _i1.Mock
-    implements _i10.GetTvSeriesTopRated {
+    implements _i11.GetTvSeriesTopRated {
   MockGetTvSeriesTopRated() {
     _i1.throwOnMissingStub(this);
   }
